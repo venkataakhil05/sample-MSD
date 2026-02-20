@@ -12,7 +12,7 @@ const batCollection = [
         name: 'Reebok RBK',
         year: '2011',
         image1: 'https://media.newindianexpress.com/TNIE%2Fimport%2Fuploads%2Fuser%2Fimagelibrary%2F2015%2F3%2F23%2F17%2Foriginal%2FDHONI%20BAT%201.jpg?w=640&auto=format%2Ccompress',
-        image2: '/MS-Dhoni-website/images/dhoni-new.jpg',
+        image2: '/images/dhoni-new.jpg',
         description: 'The World Cup Winning Blade'
     },
     {
@@ -20,7 +20,7 @@ const batCollection = [
         name: 'Spartan MSD 7',
         year: '2015',
         image1: 'https://m.media-amazon.com/images/I/611PDekWPnL._AC_UF894,1000_QL80_.jpg',
-        image2: '/MS-Dhoni-website/images/dhoni-wall-2.jpg',
+        image2: '/images/dhoni-wall-2.jpg',
         description: 'Limited Edition English Willow'
     },
     {
@@ -28,7 +28,7 @@ const batCollection = [
         name: 'SS Ton Gladiator',
         year: '2008',
         image1: '/MS-Dhoni-website/images/dhoni-wall-2.jpg',
-        image2: '/MS-Dhoni-website/images/dhoni-new.jpg',
+        image2: '/images/dhoni-new.jpg',
         description: 'Early Career Power Hitter'
     },
 ];

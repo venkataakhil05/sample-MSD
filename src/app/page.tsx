@@ -227,7 +227,7 @@ export default function Home() {
         {/* Right — hero image */}
         <div className={styles.heroImg} ref={imageWrapRef}>
           <Image
-            src="/MS-Dhoni-website/images/dhoni-hero.jpg"
+            src="/images/dhoni-hero.jpg"
             alt="MS Dhoni"
             fill
             priority
