@@ -1,0 +1,514 @@
+/* ══════════════════════════════════════════════════ PAGE */
+.page {
+    min-height: 100vh;
+    background: #000;
+    color: var(--color-text-main);
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* ── Custom cursor ── */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+/* ── Light burst ── */
+.lightBurst {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            rgba(245, 197, 24, 0.9) 0%,
+            rgba(245, 197, 24, 0.3) 30%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* ══════════════════════════════════════════════════ CURTAIN */
+.curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    overflow: hidden;
+}
+
+.curtainBg {
+    position: absolute;
+    inset: 0;
+    background: #000;
+}
+
+.curtainGrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(245, 197, 24, 0.1) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+.curtainCenter {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.curtainNum {
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 22vw, 22rem);
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-shadow: 0 0 80px rgba(245, 197, 24, 0.6);
+    animation: flicker 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 80px rgba(245, 197, 24, 0.6);
+    }
+
+    85% {
+        opacity: 1;
+        text-shadow: 0 0 80px rgba(245, 197, 24, 0.6);
+    }
+
+    90% {
+        opacity: 0.4;
+    }
+
+    92% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 120px rgba(245, 197, 24, 0.9);
+    }
+}
+
+.curtainLabel {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.55rem, 1vw, 0.75rem);
+    letter-spacing: 0.4em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+.scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--color-primary) 20%,
+            #fff 50%,
+            var(--color-primary) 80%,
+            transparent 100%);
+    box-shadow: 0 0 30px 8px var(--color-primary);
+    z-index: 4;
+    opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════ HERO */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 55%;
+    align-items: center;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 50vh;
+        padding-top: 6rem;
+    }
+
+    .page {
+        cursor: auto;
+    }
+
+    .cursor {
+        display: none;
+    }
+}
+
+/* Ghost jersey number */
+.ghostNum {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(18rem, 40vw, 45rem);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245, 197, 24, 0.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    will-change: transform, opacity;
+    z-index: 0;
+}
+
+/* ── Hero text ── */
+.heroText {
+    position: relative;
+    z-index: 2;
+    padding: 10rem 4rem 4rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .heroText {
+        padding: 4rem 1.5rem 2rem;
+    }
+}
+
+.eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.65;
+}
+
+.nameWrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.88;
+    will-change: transform, opacity;
+}
+
+.nameMs {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--color-text-main);
+    letter-spacing: -0.02em;
+}
+
+.nameDhoni {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-primary);
+    letter-spacing: -0.02em;
+}
+
+.tagline {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+/* CTA buttons */
+.cta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: var(--color-primary);
+    color: #000;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btnPrimary:hover {
+    background: #fff;
+    transform: translateX(4px);
+}
+
+.btnSecondary {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    opacity: 0.55;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 2px;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.btnSecondary:hover {
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+/* Stat pills */
+.pills {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.pill {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0 1.5rem 0 0;
+    margin-right: 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1rem;
+}
+
+.pill:last-child {
+    border-right: none;
+}
+
+.pillVal {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.pillLabel {
+    font-family: 'Courier New', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    opacity: 0.45;
+}
+
+/* ── Hero image ── */
+.heroImg {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    will-change: clip-path, opacity;
+}
+
+@media (max-width: 900px) {
+    .heroImg {
+        height: 50vh;
+    }
+}
+
+.dhoniImg {
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* ── Hero video ── */
+.videoWrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.videoFrame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 170%;
+    height: 170%;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+}
+
+.videoPoster {
+    position: absolute;
+    inset: 0;
+    background: url('/images/dhoni-hero.jpg') center/cover no-repeat;
+    z-index: -1;
+}
+
+.imgOverlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, #000 0%, transparent 20%),
+        linear-gradient(to top, #000 0%, transparent 20%);
+    pointer-events: none;
+}
+
+/* Vertical stat strip on the image */
+.imgStrip {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.45;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.stripVal {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.8;
+}
+
+/* Scroll hint */
+.scrollHint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 6rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 3;
+}
+
+@media (max-width: 900px) {
+    .scrollHint {
+        left: 1.5rem;
+    }
+}
+
+.scrollLine {
+    width: 40px;
+    height: 1px;
+    background: var(--color-primary);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+    0%,
+    100% {
+        width: 40px;
+        opacity: 0.4;
+    }
+
+    50% {
+        width: 60px;
+        opacity: 1;
+    }
+}
+
+.scrollHint span {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    opacity: 0.45;
+}
+
+/* ══════════════════════════════════════════════════ AUTOGRAPH */
+.autographSection {
+    width: 100%;
+    min-height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    padding: 5rem 0;
+}
+
+.autographContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.legacyText {
+    font-family: var(--font-display);
+    font-size: 15vw;
+    line-height: 0.8;
+    color: rgba(255, 255, 255, 0.04);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.signatureWrapper {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 10px rgba(245, 197, 24, 0.5));
+}
+
+.quote {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 2;
+    opacity: 0.7;
+    margin-top: 2rem;
+}
