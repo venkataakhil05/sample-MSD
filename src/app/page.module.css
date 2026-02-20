@@ -369,7 +369,7 @@
 .videoPoster {
     position: absolute;
     inset: 0;
-    background: url('/images/dhoni-hero.jpg') center/cover no-repeat;
+    background: url('/MS-Dhoni-website/images/dhoni-hero.jpg') center/cover no-repeat;
     z-index: -1;
 }
 
