@@ -27,7 +27,7 @@ const batCollection = [
         id: 3,
         name: 'SS Ton Gladiator',
         year: '2008',
-        image1: '/MS-Dhoni-website/images/dhoni-wall-2.jpg',
+        image1: '/images/dhoni-wall-2.jpg',
         image2: '/images/dhoni-new.jpg',
         description: 'Early Career Power Hitter'
     },
