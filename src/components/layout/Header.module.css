@@ -1,0 +1,278 @@
+/* ─── Top Bar ─────────────────────────────────────────────── */
+.topBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 3rem;
+    z-index: 1000;
+    /* subtle glass */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
+    backdrop-filter: blur(2px);
+}
+
+/* ─── Logo ───────────────────────────────────────────────── */
+.logo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+.logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.seven {
+    color: var(--color-primary);
+}
+
+/* ─── Right Actions ──────────────────────────────────────── */
+.rightActions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.storeBtn {
+    background: var(--color-primary);
+    color: #000;
+    padding: 0.55rem 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.storeBtn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.menuToggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ─── Orbital Vertical Nav ───────────────────────────────── */
+.orbitalNav {
+    position: fixed;
+    right: 2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+
+.orbitalTrack {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2.2rem;
+}
+
+/* Vertical connecting line */
+.orbitalLine {
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 209, 0, 0.35), transparent);
+    pointer-events: none;
+}
+
+/* Each item row */
+.orbitalItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.orbitalLink {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hover-reveal label (slides in from right) */
+.navLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.orbitalLink:hover .navLabel,
+.orbitalActive .navLabel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.navNum {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.navName {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #fff;
+}
+
+/* The dot */
+.navDot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 209, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.dotInner {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: background 0.25s, width 0.25s, height 0.25s;
+}
+
+.orbitalLink:hover .navDot,
+.orbitalActive .navDot {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 12px var(--color-primary), 0 0 30px rgba(255, 209, 0, 0.3);
+}
+
+.orbitalLink:hover .dotInner,
+.orbitalActive .dotInner {
+    background: var(--color-primary);
+    width: 8px;
+    height: 8px;
+}
+
+/* ─── Mobile Fullscreen Overlay ──────────────────────────── */
+.mobileNav {
+    position: fixed;
+    inset: 0;
+    background: #080808;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: circle(0% at 95% 5%);
+    transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+}
+
+.mobileNav.open {
+    clip-path: circle(150% at 95% 5%);
+    pointer-events: all;
+}
+
+.mobileClose {
+    position: absolute;
+    top: 1.8rem;
+    right: 2rem;
+    font-size: 1.6rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.mobileNav ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+}
+
+.mobileNav li {
+    margin: 1.5rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease calc(var(--i) * 0.08s + 0.2s),
+        transform 0.4s ease calc(var(--i) * 0.08s + 0.2s);
+}
+
+.mobileNav.open li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobileNav a {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.mobileNav a:hover {
+    color: var(--color-primary);
+}
+
+.mobileNum {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .topBar {
+        padding: 1.2rem 1.5rem;
+    }
+
+    .orbitalNav {
+        display: none;
+    }
+
+    .storeBtn {
+        display: none;
+    }
+
+    .menuToggle {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,123 @@
+.container {
+    padding-top: 8rem;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+}
+
+.content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+}
+
+.infoItem {
+    margin-bottom: 3rem;
+}
+
+.infoItem h3 {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.infoItem p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.form {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--color-text-main);
+    font-family: var(--font-main);
+    transition: border-color var(--transition-fast);
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: opacity var(--transition-fast);
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.successMsg {
+    margin-top: 1rem;
+    color: #4caf50;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}

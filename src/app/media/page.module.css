@@ -1,0 +1,501 @@
+/* ═══════════════════════════════════════════ PAGE */
+.page {
+    min-height: 100vh;
+    background: var(--color-bg);
+    color: var(--color-text-main);
+    overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════ CAMERA FLASH */
+.flash {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* ═══════════════════════════════════════════ IRIS / APERTURE */
+.iris {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Lens gleam at center */
+.lens {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lensRing {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 0 40px 10px var(--color-primary), inset 0 0 30px rgba(245, 197, 24, 0.3);
+    animation: lensRotate 2s linear infinite;
+}
+
+@keyframes lensRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.lensInner {
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 197, 24, 0.5) 0%, rgba(0, 0, 0, 0.9) 70%);
+    box-shadow: inset 0 0 20px rgba(245, 197, 24, 0.4);
+}
+
+.lensGlint {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 30%;
+    height: 15%;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    filter: blur(4px);
+    transform: rotate(-30deg);
+}
+
+/* ── 4 triangular blades ── */
+/* Each blade is a full-viewport div clipped to a triangle pointing inward */
+
+.blade {
+    position: absolute;
+    inset: 0;
+    background: #000;
+}
+
+/* Top blade: triangle pointing down (base at top, tip at center) */
+.bladeTop {
+    clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+}
+
+/* Right blade: triangle pointing left */
+.bladeRight {
+    clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+}
+
+/* Bottom blade: triangle pointing up */
+.bladeBottom {
+    clip-path: polygon(100% 100%, 0% 100%, 50% 50%);
+}
+
+/* Left blade: triangle pointing right */
+.bladeLeft {
+    clip-path: polygon(0% 100%, 0% 0%, 50% 50%);
+}
+
+/* ═══════════════════════════════════════════ HERO */
+.hero {
+    padding: 9rem 6rem 3rem;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 7rem 1.5rem 2rem;
+    }
+}
+
+.eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 0.5rem;
+}
+
+/* Title - each letter is individually animated */
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(5.5rem, 17vw, 15rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    padding-left: 0.08em;
+    border-left: 0.05em solid var(--color-primary);
+    display: flex;
+    align-items: baseline;
+    opacity: 0;
+    /* perspective for 3D letter flip */
+    perspective: 600px;
+}
+
+.letter {
+    display: inline-block;
+    color: var(--color-text-main);
+    transform-origin: bottom center;
+    will-change: transform, opacity;
+}
+
+/* Alternate letters get yellow tint for visual interest */
+.letter:nth-child(even) {
+    color: var(--color-primary);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-top: 1.2rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+}
+
+.heroRule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-primary), transparent 60%);
+    margin-top: 2.5rem;
+    opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════════ PHOTO GRID */
+.photoSection {
+    padding: 2rem 4rem 4rem;
+}
+
+@media (max-width: 768px) {
+    .photoSection {
+        padding: 1.5rem 1rem 2rem;
+    }
+}
+
+.photoGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 320px;
+    gap: 3px;
+}
+
+@media (max-width: 900px) {
+    .photoGrid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photoGrid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 60vw;
+    }
+}
+
+.photoCard {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+.large {
+    grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+    .large {
+        grid-column: span 1;
+    }
+}
+
+.photoInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Photo starts B&W — GSAP will develop it to full color */
+.photo {
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* start state set via GSAP: grayscale(100%) brightness(0.5) */
+}
+
+.photoCard:hover .photo {
+    transform: scale(1.06);
+}
+
+.photoOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.photoCard:hover .photoOverlay {
+    opacity: 1;
+}
+
+.photoTag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    transform: translateY(10px);
+    transition: transform 0.35s 0.05s;
+}
+
+.photoCard:hover .photoTag {
+    transform: translateY(0);
+}
+
+.photoTitle {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    transform: translateY(14px);
+    transition: transform 0.35s 0.1s;
+}
+
+.photoCard:hover .photoTitle {
+    transform: translateY(0);
+}
+
+.overlayLine {
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    margin-top: 0.8rem;
+    transition: width 0.45s 0.15s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.photoCard:hover .overlayLine {
+    width: 40px;
+}
+
+.photoBadge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 0.25rem 0.5rem;
+    border-left: 2px solid var(--color-primary);
+    z-index: 2;
+}
+
+/* ═══════════════════════════════════════════ TICKER */
+.ticker {
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid rgba(245, 197, 24, 0.15);
+    border-bottom: 1px solid rgba(245, 197, 24, 0.15);
+    background: rgba(245, 197, 24, 0.04);
+    padding: 0.85rem 0;
+    white-space: nowrap;
+    mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+    margin: 2rem 0;
+}
+
+.tickerInner {
+    display: inline-flex;
+    animation: ticker 35s linear infinite;
+}
+
+@keyframes ticker {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.tickerItem {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    padding: 0 3rem;
+    opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════ SECTION HEAD */
+.sectionHead {
+    padding: 2rem 6rem 2rem;
+}
+
+@media (max-width: 768px) {
+    .sectionHead {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+}
+
+.sectionEye {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 0.4rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.accent {
+    color: var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════ VIDEOS */
+.videoSection {
+    padding-bottom: 7rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.videoGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 6rem;
+}
+
+@media (max-width: 768px) {
+    .videoGrid {
+        padding: 0 1rem;
+    }
+}
+
+.videoCard {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.3s;
+}
+
+@media (max-width: 900px) {
+    .videoCard {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.videoCard:hover {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.videoInfo {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    order: -1;
+}
+
+@media (max-width: 900px) {
+    .videoInfo {
+        order: 0;
+    }
+}
+
+.videoNum {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--color-primary);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    padding-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.videoTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-main);
+}
+
+.videoSub {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    opacity: 0.55;
+    line-height: 1.5;
+}
+
+.videoThumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.3s;
+}
+
+.videoCard:hover .videoThumb {
+    border-color: rgba(245, 197, 24, 0.35);
+}
+
+.videoEmbed {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.videoCardGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(245, 197, 24, 0.06) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+.videoCard:hover .videoCardGlow {
+    opacity: 1;
+}
