@@ -36,8 +36,9 @@ const Signature = ({ onComplete }: SignatureProps) => {
             if (hasTriggeredRef.current) return;
             hasTriggeredRef.current = true;
 
-            // 0. Play Crowd Sound
+            // 0. Play Crowd Sound & Shutter
             playSound('crowd');
+            playSound('shutter');
 
             // 1. Screen shake
             if (wrapRef.current) {
@@ -100,7 +101,10 @@ const Signature = ({ onComplete }: SignatureProps) => {
                 }
 
                 if (onComplete) onComplete();
-            }, 2000);
+
+                // Shutter sound to exit silence
+                playSound('shutter');
+            }, 2500);
         };
 
         const ctx = gsap.context(() => {
@@ -129,7 +133,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
             particlesRef.current = [];
             hasTriggeredRef.current = false;
         };
-    }, [onComplete]);
+    }, [onComplete, playSound]);
 
     return (
         <div ref={wrapRef} style={{ textAlign: 'center' }}>

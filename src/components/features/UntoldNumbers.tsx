@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './UntoldNumbers.module.css';
+import PrimarySourceBadge from '../ui/PrimarySourceBadge';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,9 +65,12 @@ export default function UntoldNumbers() {
         <section className={styles.section} ref={sectionRef}>
             <div className={styles.headerRow}>
                 <span className={styles.eyebrow}>BEYOND THE SCOREBOOK</span>
-                <h2 className={styles.heading}>
-                    UNTOLD <span className={styles.gold}>NUMBERS</span>
-                </h2>
+                <div className={styles.titleArea}>
+                    <h2 className={styles.heading}>
+                        UNTOLD <span className={styles.gold}>NUMBERS</span>
+                    </h2>
+                    <PrimarySourceBadge />
+                </div>
                 <p className={styles.sub}>Stats that define the finisher — not just the batter.</p>
             </div>
 

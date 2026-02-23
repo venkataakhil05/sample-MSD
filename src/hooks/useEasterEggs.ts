@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useAudio } from '@/contexts/SoundContext';
 
 export function useEasterEggs(ghostNumSelector: string) {
-    const { playSound, isAudioEnabled } = useAudio();
+    const { playSound } = useAudio();
     const scrollPauseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const breathingTween = useRef<gsap.core.Tween | null>(null);
     const quoteOverlaySet = useRef<Set<HTMLDivElement>>(new Set());
@@ -40,6 +40,7 @@ export function useEasterEggs(ghostNumSelector: string) {
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
+        const currentQuoteOverlaySet = quoteOverlaySet.current;
         // ── Easter Egg 1: Press "7" → golden border halo + quote ─────────
         const onKeyDown = (e: KeyboardEvent) => {
             if (e.key === '7') {
@@ -127,8 +128,8 @@ export function useEasterEggs(ghostNumSelector: string) {
             if (hoverTimer) clearTimeout(hoverTimer);
             if (scrollPauseTimer.current) clearTimeout(scrollPauseTimer.current);
             if (breathingTween.current) breathingTween.current.kill();
-            quoteOverlaySet.current.forEach(el => el.remove());
-            quoteOverlaySet.current.clear();
+            currentQuoteOverlaySet.forEach(el => el.remove());
+            currentQuoteOverlaySet.clear();
         };
     }, [ghostNumSelector, showQuote, playSound]);
 }

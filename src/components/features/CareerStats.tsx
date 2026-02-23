@@ -6,6 +6,8 @@ import { careerStats } from '@/data/stats';
 
 type Format = 'test' | 'odi' | 't20i' | 'ipl';
 
+import PrimarySourceBadge from '../ui/PrimarySourceBadge';
+
 const CareerStats = () => {
     const [activeTab, setActiveTab] = useState<Format>('odi');
 
@@ -20,7 +22,10 @@ const CareerStats = () => {
 
     return (
         <section className={styles.statsSection}>
-            <h2 className={styles.heading}>CAREER <span className={styles.goldText}>STATS</span></h2>
+            <div className={styles.headerRow}>
+                <h2 className={styles.heading}>CAREER <span className={styles.goldText}>STATS</span></h2>
+                <PrimarySourceBadge />
+            </div>
 
             <div className={styles.tabs}>
                 {tabs.map((tab) => (

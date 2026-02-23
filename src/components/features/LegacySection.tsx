@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './LegacySection.module.css';
@@ -31,11 +31,27 @@ const tiles = [
 ];
 
 export default function LegacySection() {
-    const sectionRef = useRef<HTMLElement>(null);
-    const [mounted, setMounted] = React.useState(false);
+    const sectionRef = React.useRef<HTMLElement>(null);
+    const [viewState, setViewState] = React.useState({
+        mounted: false,
+        stars: [] as { left: string; top: string; delay: string; size: string }[]
+    });
 
     useEffect(() => {
-        setMounted(true);
+        const generatedStars = Array.from({ length: 40 }).map(() => ({
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            delay: `${Math.random() * 4}s`,
+            size: `${Math.random() * 2 + 1}px`,
+        }));
+
+        const timer = setTimeout(() => {
+            setViewState({
+                mounted: true,
+                stars: generatedStars
+            });
+        }, 0);
+
         const ctx = gsap.context(() => {
             gsap.from(`.${styles.heading}`, {
                 scrollTrigger: { trigger: `.${styles.heading}`, start: 'top 85%' },
@@ -48,22 +64,29 @@ export default function LegacySection() {
                 });
             });
         }, sectionRef);
-        return () => ctx.revert();
+        return () => {
+            clearTimeout(timer);
+            ctx.revert();
+        };
     }, []);
+
+    const { mounted, stars } = viewState;
+
+    if (!mounted) return null;
 
     return (
         <section className={styles.section} ref={sectionRef}>
             <div className={styles.starfield} aria-hidden="true">
-                {mounted && Array.from({ length: 40 }).map((_, i) => (
+                {stars.map((star, i) => (
                     <div
                         key={i}
                         className={styles.star}
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 4}s`,
-                            width: `${Math.random() * 2 + 1}px`,
-                            height: `${Math.random() * 2 + 1}px`,
+                            left: star.left,
+                            top: star.top,
+                            animationDelay: star.delay,
+                            width: star.size,
+                            height: star.size,
                         } as React.CSSProperties}
                     />
                 ))}
@@ -89,9 +112,9 @@ export default function LegacySection() {
                 </div>
 
                 <div className={styles.finalQuote}>
-                    <span className={styles.quoteMark}>"</span>
+                    <span className={styles.quoteMark}>&quot;</span>
                     Champions aren&apos;t built by outcomes. They&apos;re built by what they pour into every quiet moment before the world is watching.
-                    <span className={styles.quoteMark}>"</span>
+                    <span className={styles.quoteMark}>&quot;</span>
                 </div>
             </div>
         </section>

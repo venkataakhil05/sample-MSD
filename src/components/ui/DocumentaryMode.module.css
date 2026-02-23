@@ -93,7 +93,56 @@
     opacity: 0;
 }
 
+/* Cinematic theatrical reveal bars */
+.cinematicBars {
+    position: fixed;
+    inset: 0;
+    z-index: 4999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.barTop,
+.barBottom {
+    width: 100%;
+    height: 12vh;
+    background: #000;
+    transform: scaleY(0);
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+:global([data-doc-mode='true']) .barTop,
+:global([data-doc-mode='true']) .barBottom {
+    transform: scaleY(1);
+}
+
+.barTop {
+    transform-origin: top;
+}
+
+.barBottom {
+    transform-origin: bottom;
+}
+
 /* When data-doc-mode is active, slow down all CSS transitions site-wide */
 :global([data-doc-mode='true']) * {
     transition-duration: 2s !important;
+}
+
+/* Header layout for statistics with badges */
+.headerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+}
+
+.titleArea {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }

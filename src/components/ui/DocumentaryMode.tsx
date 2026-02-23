@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useDocumentary } from '@/contexts/DocumentaryContext';
+import { useAudio } from '@/contexts/SoundContext';
 import styles from './DocumentaryMode.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,13 +19,37 @@ const CAPTIONS: { selector: string; text: string }[] = [
     { selector: '#section-dna', text: 'He didn\'t just play. He transformed the game forever.' },
     { selector: '#section-index', text: 'No metric captures it fully. But this comes close.' },
     { selector: '#section-legacy', text: 'The number retired. The impact never will.' },
+    { selector: '#section-decision', text: 'Enter the classroom of calm: The Decision Room.' },
 ];
 
 export default function DocumentaryMode() {
     const { isDocMode, toggleDocMode } = useDocumentary();
+    const { playSound } = useAudio();
     const captionRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
+    const barsRef = useRef<HTMLDivElement>(null);
     const currentCaptionRef = useRef<string>('');
+
+    const handleToggle = () => {
+        if (!isDocMode) playSound('shutter');
+        toggleDocMode();
+    };
+
+    const showCaption = (text: string) => {
+        if (!captionRef.current || currentCaptionRef.current === text) return;
+        currentCaptionRef.current = text;
+        const el = captionRef.current;
+        el.textContent = text;
+        gsap.fromTo(el,
+            { opacity: 0, y: 12 },
+            {
+                opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+                onComplete: () => {
+                    gsap.to(el, { opacity: 0, y: -10, duration: 0.7, delay: 3.5, ease: 'power2.in' });
+                }
+            }
+        );
+    };
 
     useEffect(() => {
         if (!isDocMode) return;
@@ -49,34 +74,26 @@ export default function DocumentaryMode() {
         };
     }, [isDocMode]);
 
-    const showCaption = (text: string) => {
-        if (!captionRef.current || currentCaptionRef.current === text) return;
-        currentCaptionRef.current = text;
-        const el = captionRef.current;
-        el.textContent = text;
-        gsap.fromTo(el,
-            { opacity: 0, y: 12 },
-            {
-                opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-                onComplete: () => {
-                    gsap.to(el, { opacity: 0, y: -10, duration: 0.7, delay: 3.5, ease: 'power2.in' });
-                }
-            }
-        );
-    };
-
     return (
         <>
             {/* Toggle Button */}
             <button
                 className={`${styles.toggle} ${isDocMode ? styles.active : ''}`}
-                onClick={toggleDocMode}
+                onClick={handleToggle}
                 aria-label={isDocMode ? 'Exit Documentary Mode' : 'Enter Documentary Mode'}
                 title={isDocMode ? 'Exit Documentary Mode' : '🎥 Documentary Mode'}
             >
                 <span className={styles.icon}>{isDocMode ? '⏹' : '🎥'}</span>
                 <span className={styles.label}>{isDocMode ? 'EXIT DOC' : 'DOC MODE'}</span>
             </button>
+
+            {/* Cinematic bars for theatrical reveal */}
+            {isDocMode && (
+                <div className={styles.cinematicBars} ref={barsRef}>
+                    <div className={styles.barTop} />
+                    <div className={styles.barBottom} />
+                </div>
+            )}
 
             {/* Cinematic vignette overlay */}
             {isDocMode && (

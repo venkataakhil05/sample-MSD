@@ -302,6 +302,21 @@ export default function Home() {
       {/* ── Dhoni Index ──────────────────────────────────── */}
       <div id="section-index"><DhoniIndex /></div>
 
+      {/* ── Decision Room Entrance ── */}
+      <section id="section-decision" className={styles.decisionEntrance}>
+        <div className={styles.entranceContent}>
+          <span className={styles.eyebrow}>THE CLASSROOM OF CALM</span>
+          <h2 className={styles.entranceHeading}>DECISION <span className={styles.goldText}>ROOM</span></h2>
+          <p className={styles.entranceSub}>
+            Step into MS Dhoni&apos;s mind during the most high-stakes moments of his career.
+            Can you match his composure?
+          </p>
+          <Link href="/decision-room" className={styles.btnPrimary}>
+            Enter the mind of MS Dhoni
+          </Link>
+        </div>
+      </section>
+
       {/* ── Legacy Never Retires ─────────────────────────── */}
       <div id="section-legacy"><LegacySection /></div>
 
