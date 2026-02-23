@@ -1,0 +1,180 @@
+.section {
+    padding: 6rem 2rem;
+    background: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.headerRow {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+}
+
+.heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+}
+
+.gold {
+    color: var(--color-primary);
+}
+
+.sub {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.lineTrack {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, rgba(255, 215, 0, 0.3), transparent);
+}
+
+.card {
+    position: relative;
+    width: calc(50% - 2.5rem);
+    will-change: transform, opacity;
+}
+
+.card.left {
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.card.right {
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+/* Connector dot on the center line */
+.dot {
+    position: absolute;
+    top: 1.5rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--era-color, var(--color-primary));
+    box-shadow: 0 0 12px var(--era-color, var(--color-primary));
+    z-index: 2;
+}
+
+.left .dot {
+    right: -3rem;
+}
+
+.right .dot {
+    left: -2.6rem;
+}
+
+.cardContent {
+    background: linear-gradient(135deg, #141414, #1c1c1c);
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    border-left: 3px solid var(--era-color, var(--color-primary));
+    border-radius: 12px;
+    padding: 1.8rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.cardContent:hover {
+    border-color: var(--era-color, var(--color-primary));
+    box-shadow: 0 0 24px -6px var(--era-color, var(--color-primary));
+}
+
+.phase {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--era-color, var(--color-primary));
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+.tag {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+}
+
+.desc {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+}
+
+.habitBadge {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 100px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    border-left: 2px solid var(--era-color, var(--color-primary));
+    padding-left: 0.8rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .lineTrack {
+        left: 14px;
+        transform: none;
+    }
+
+    .card,
+    .card.left,
+    .card.right {
+        width: 100%;
+        margin-left: 2rem;
+        align-self: flex-start;
+    }
+
+    .left .dot,
+    .right .dot {
+        left: -2.4rem;
+        right: auto;
+    }
+}

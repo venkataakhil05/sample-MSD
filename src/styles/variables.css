@@ -2,11 +2,14 @@
   /* Colors */
   --color-bg: #0a0a0a;
   --color-surface: #121212;
-  --color-primary: #FFD700; /* Gold */
-  --color-secondary: #003366; /* Deep Blue */
+  --color-primary: #FFD700;
+  /* Gold */
+  --color-secondary: #003366;
+  /* Deep Blue */
   --color-text-main: #ffffff;
   --color-text-muted: #a0a0a0;
-  --color-accent: #e50914; /* Red accent if needed */
+  --color-accent: #e50914;
+  /* Red accent if needed */
 
   /* Typography */
   --font-main: 'Inter', sans-serif;
@@ -22,6 +25,25 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.5s ease;
+}
+
+/* ── Captain Mode (default: electric stadium atmosphere) ── */
+[data-persona='captain'] {
+  --color-bg: #080808;
+  --color-surface: #111111;
+  --color-primary: #FFD700;
+  --color-text-main: #ffffff;
+  --color-text-muted: #a0a0a0;
+}
+
+/* ── Calm Mode (matte, muted, meditative) ── */
+[data-persona='calm'] {
+  --color-bg: #111114;
+  --color-surface: #1a1a1f;
+  --color-primary: #b0b8c8;
+  --color-text-main: #e8e8ec;
+  --color-text-muted: #7a7a8a;
+  --color-accent: #5c7fa3;
 }
 
 [data-theme='light'] {

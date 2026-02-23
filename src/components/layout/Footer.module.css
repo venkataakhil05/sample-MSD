@@ -67,11 +67,25 @@
     padding-top: 2rem;
     text-align: center;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.sourceBadge {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: rgba(242, 205, 30, 0.55);
+    border: 1px solid rgba(242, 205, 30, 0.2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    white-space: nowrap;
 }
 
 @media (max-width: 768px) {

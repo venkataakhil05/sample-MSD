@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './BatGallery.module.css';
 import Image from 'next/image';
+import { useAudio } from '@/contexts/SoundContext';
 
 // Placeholder data for Bat collection
 // In a real app, these would be imported assets or CMS data
@@ -34,6 +35,8 @@ const batCollection = [
 ];
 
 const BatGallery = () => {
+    const { playSound } = useAudio();
+
     return (
         <section className={styles.gallerySection}>
             <h2 className={styles.heading}>LEGENDARY <span className={styles.goldText}>ARSENAL</span></h2>
@@ -41,7 +44,11 @@ const BatGallery = () => {
 
             <div className={styles.galleryGrid}>
                 {batCollection.map((bat) => (
-                    <div key={bat.id} className={styles.card}>
+                    <div
+                        key={bat.id}
+                        className={styles.card}
+                        onMouseEnter={() => playSound('bat-hit')}
+                    >
                         <div className={styles.imageContainer}>
                             {/* Image 1: Default View */}
                             <div className={styles.imageWrapper} data-view="front">

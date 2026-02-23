@@ -18,6 +18,7 @@ const Footer = () => {
                         <li><Link href="/about">About</Link></li>
                         <li><Link href="/career">Career Stats</Link></li>
                         <li><Link href="/media">Media</Link></li>
+                        <li><Link href="/decision-room">Decision Room</Link></li>
                         <li><Link href="/contact">Contact</Link></li>
                     </ul>
                 </div>
@@ -35,7 +36,10 @@ const Footer = () => {
 
             <div className={styles.bottomBar}>
                 <p>&copy; {new Date().getFullYear()} MS Dhoni. All Rights Reserved.</p>
-                <p>Designed & Developed with Passion.</p>
+                <p className={styles.sourceBadge}>
+                    📚 Data curated from match records, ICC archives &amp; historical footage.
+                </p>
+                <p>Designed &amp; Developed with Passion.</p>
             </div>
         </footer>
     );

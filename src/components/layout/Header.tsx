@@ -1,24 +1,26 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useAudio } from '@/contexts/SoundContext';
 
 const navLinks = [
     { name: 'Home', path: '/', num: '01' },
     { name: 'About', path: '/about', num: '02' },
     { name: 'Career', path: '/career', num: '03' },
     { name: 'Media', path: '/media', num: '04' },
-    { name: 'Contact', path: '/contact', num: '05' },
+    { name: 'Decision Room', path: '/decision-room', num: '05' },
+    { name: 'Contact', path: '/contact', num: '06' },
 ];
 
 const Header = () => {
-    const headerRef = useRef<HTMLElement>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
+    const { isAudioEnabled, toggleAudio } = useAudio();
 
     // Entrance animation for orbital nav dots
     useEffect(() => {
@@ -40,12 +42,21 @@ const Header = () => {
 
     return (
         <>
-            {/* Top Bar — Logo + Store only */}
-            <header ref={headerRef} className={styles.topBar}>
+            {/* Top Bar — Logo + Audio Toggle + Menu */}
+            <header className={styles.topBar}>
                 <div className={styles.logo}>
                     <Link href="/">MSD<span className={styles.seven}>7</span></Link>
                 </div>
                 <div className={styles.rightActions}>
+                    {/* Audio Toggle */}
+                    <button
+                        className={styles.audioToggle}
+                        onClick={toggleAudio}
+                        title={isAudioEnabled ? 'Mute audio' : 'Enable audio'}
+                        aria-label={isAudioEnabled ? 'Mute audio' : 'Enable audio'}
+                    >
+                        {isAudioEnabled ? '🔊' : '🔇'}
+                    </button>
                     <button className={styles.menuToggle} onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle Menu">
                         {isMenuOpen ? <FaTimes /> : <FaBars />}
                     </button>

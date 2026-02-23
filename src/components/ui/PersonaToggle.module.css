@@ -1,0 +1,37 @@
+.toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 100px;
+    padding: 0.6rem 1.1rem 0.6rem 0.8rem;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    color: var(--color-text-main);
+}
+
+.toggle:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+.icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}

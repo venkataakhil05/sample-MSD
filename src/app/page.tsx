@@ -9,6 +9,14 @@ import Image from 'next/image';
 import Signature from '@/components/ui/Signature';
 import CareerStats from '@/components/features/CareerStats';
 import BatGallery from '@/components/features/BatGallery';
+import TrophyRoom from '@/components/features/TrophyRoom';
+import DhoniDNA from '@/components/features/DhoniDNA';
+import UntoldNumbers from '@/components/features/UntoldNumbers';
+import DhoniIndex from '@/components/features/DhoniIndex';
+import LegacySection from '@/components/features/LegacySection';
+import VoicesFeed from '@/components/features/VoicesFeed';
+import { useEasterEggs } from '@/hooks/useEasterEggs';
+import { useAudio } from '@/contexts/SoundContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +63,12 @@ export default function Home() {
   const pillsRef = useRef<HTMLDivElement>(null);
   const scrollHintRef = useRef<HTMLDivElement>(null);
   const customCursorRef = useRef<HTMLDivElement>(null);
+
+  // Easter eggs — key "7" halo, long hover quote, scroll-pause breathing
+  useEasterEggs(`.${styles.ghostNum}`);
+
+  // Audio hook for ambience in autograph section
+  const { playSound } = useAudio();
 
   useEffect(() => {
     const curtain = curtainRef.current;
@@ -148,6 +162,13 @@ export default function Home() {
         scrollTrigger: { trigger: `.${styles.autographSection}`, start: 'top bottom', scrub: 2 },
         x: 200, opacity: 0,
       });
+
+      // Trigger ambience on autograph section enter
+      ScrollTrigger.create({
+        trigger: `.${styles.autographSection}`,
+        start: 'top 80%',
+        onEnter: () => playSound('ambience'),
+      });
     }, containerRef);
 
     return () => {
@@ -156,7 +177,7 @@ export default function Home() {
       clearTimeout(safetyTimer);
       window.removeEventListener('mousemove', moveCursor);
     };
-  }, []);
+  }, [playSound]);
 
   return (
     <div className={styles.page} ref={containerRef}>
@@ -181,7 +202,7 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <main className={styles.hero}>
 
-        {/* Ghost jersey number */}
+        {/* Ghost jersey number — also target for Easter Egg breathing animation */}
         <div className={styles.ghostNum} ref={ghostNumRef}>07</div>
 
         {/* Left column — text */}
@@ -224,8 +245,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right — hero image */}
-        <div className={styles.heroImg} ref={imageWrapRef}>
+        {/* Right — hero image — data-easter attribute for Easter Egg long-hover */}
+        <div className={styles.heroImg} ref={imageWrapRef} data-easter="hero-img">
           <Image
             src="/MS-Dhoni-website/images/dhoni-hero.jpg"
             alt="MS Dhoni"
@@ -252,7 +273,7 @@ export default function Home() {
 
 
       {/* ── Autograph ────────────────────────────────────── */}
-      <section className={styles.autographSection}>
+      <section id="section-autograph" className={styles.autographSection}>
         <div className={styles.autographContainer}>
           <h2 className={styles.legacyText}>LEGACY</h2>
           <div className={styles.signatureWrapper}><Signature /></div>
@@ -261,11 +282,29 @@ export default function Home() {
       </section>
 
       {/* ── Career Stats ─────────────────────────────────── */}
-      <CareerStats />
+      <div id="section-careers"><CareerStats /></div>
 
       {/* ── Bat Gallery ──────────────────────────────────── */}
       <BatGallery />
+
+      {/* ── Trophy Room ──────────────────────────────────── */}
+      <div id="section-trophies"><TrophyRoom /></div>
+
+      {/* ── Voices About Dhoni ───────────────────────────── */}
+      <div id="section-voices"><VoicesFeed /></div>
+
+      {/* ── Dhoni DNA Timeline ───────────────────────────── */}
+      <div id="section-dna"><DhoniDNA /></div>
+
+      {/* ── Untold Numbers ───────────────────────────────── */}
+      <UntoldNumbers />
+
+      {/* ── Dhoni Index ──────────────────────────────────── */}
+      <div id="section-index"><DhoniIndex /></div>
+
+      {/* ── Legacy Never Retires ─────────────────────────── */}
+      <div id="section-legacy"><LegacySection /></div>
+
     </div>
   );
 }
-
