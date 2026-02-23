@@ -248,7 +248,7 @@ export default function Home() {
         {/* Right — hero image — data-easter attribute for Easter Egg long-hover */}
         <div className={styles.heroImg} ref={imageWrapRef} data-easter="hero-img">
           <Image
-            src="/MS-Dhoni-website/images/dhoni-hero.jpg"
+            src="/images/dhoni-hero.jpg"
             alt="MS Dhoni"
             fill
             priority
