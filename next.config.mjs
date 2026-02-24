@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   output: 'export',
+  basePath: isProd ? '/MS-Dhoni-website' : '',
+  assetPrefix: isProd ? '/MS-Dhoni-website/' : '',
   images: {
     unoptimized: true,
     remotePatterns: [

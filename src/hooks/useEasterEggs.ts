@@ -44,42 +44,45 @@ export function useEasterEggs(ghostNumSelector: string) {
         // ── Easter Egg 1: Press "7" → golden border halo + quote ─────────
         const onKeyDown = (e: KeyboardEvent) => {
             if (e.key === '7') {
-                const html = document.documentElement;
-
-                // Trigger flash sound if audio is on
                 playSound('crowd');
 
-                gsap.fromTo(
-                    html,
-                    { outline: '0px solid #FFD700', outlineOffset: '0px' },
-                    {
-                        outline: '6px solid #FFD700',
-                        outlineOffset: '-6px',
-                        duration: 0.4,
-                        yoyo: true,
-                        repeat: 1,
-                        ease: 'power2.inOut',
-                        onComplete: () => {
-                            html.style.outline = '';
-                            html.style.outlineOffset = '';
-                        },
-                    }
-                );
-
-                // Show iconic quote
-                showQuote('"DEFINING A GENERA7ION."', true);
-
-                // Golden flash overlay
+                // 1. Full-screen golden radial burst — unmissable
                 const flash = document.createElement('div');
                 flash.style.cssText = `
                     position:fixed;inset:0;pointer-events:none;z-index:99999;
-                    background:radial-gradient(ellipse at center, rgba(255,215,0,0.25) 0%, transparent 80%);
+                    background:radial-gradient(ellipse at center,
+                        rgba(255,215,0,0.55) 0%,
+                        rgba(255,180,0,0.30) 40%,
+                        transparent 75%);
                 `;
                 document.body.appendChild(flash);
-                gsap.to(flash, {
-                    opacity: 0, duration: 1.5, ease: 'power2.out',
-                    onComplete: () => flash.remove(),
-                });
+                gsap.fromTo(flash,
+                    { opacity: 0, scale: 0.8 },
+                    {
+                        opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out',
+                        onComplete: () => {
+                            gsap.to(flash, {
+                                opacity: 0, duration: 1.4, ease: 'power2.in',
+                                onComplete: () => flash.remove(),
+                            });
+                        }
+                    }
+                );
+
+                // 2. Gold border glow on entire viewport
+                gsap.fromTo(document.documentElement,
+                    { outline: '0px solid #FFD700' },
+                    {
+                        outline: '8px solid #FFD700',
+                        duration: 0.3, yoyo: true, repeat: 3, ease: 'power2.inOut',
+                        onComplete: () => {
+                            (document.documentElement as HTMLElement).style.outline = '';
+                        }
+                    }
+                );
+
+                // 3. Giant centered quote text — unmissable
+                showQuote('"DEFINING A GENERA7ION."', true);
             }
         };
         window.addEventListener('keydown', onKeyDown);

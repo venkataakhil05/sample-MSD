@@ -38,44 +38,77 @@ const indexes = [
     },
 ];
 
-const CIRCUMFERENCE = 2 * Math.PI * 54; // radius = 54
+const RADIUS = 54;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 export default function DhoniIndex() {
     const sectionRef = useRef<HTMLElement>(null);
+    // Refs to each card's DOM node — populated after mount via callback refs
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
+        if (!sectionRef.current) return;
+
+        // Set initial arc state imperatively so React never manages strokeDashoffset
+        cardRefs.current.forEach((card) => {
+            if (!card) return;
+            const arc = card.querySelector<SVGCircleElement>(`.${styles.arcFill}`);
+            if (arc) {
+                // Set via style — GSAP will animate this, React won't override it
+                arc.style.strokeDasharray = `${CIRCUMFERENCE}`;
+                arc.style.strokeDashoffset = `${CIRCUMFERENCE}`; // fully hidden
+            }
+        });
+
         const ctx = gsap.context(() => {
+            // Heading entrance
             gsap.from(`.${styles.heading}`, {
                 scrollTrigger: { trigger: `.${styles.heading}`, start: 'top 85%' },
                 y: 40, opacity: 0, duration: 0.9, ease: 'power3.out',
             });
 
-            gsap.utils.toArray<HTMLElement>(`.${styles.card}`).forEach((card, i) => {
-                const circle = card.querySelector(`.${styles.arcFill}`) as SVGCircleElement | null;
-                const scoreEl = card.querySelector(`.${styles.score}`) as HTMLElement | null;
-                const target = parseInt(card.dataset.value || '0', 10);
+            cardRefs.current.forEach((card, i) => {
+                if (!card) return;
 
-                // Entrance
+                const arc = card.querySelector<SVGCircleElement>(`.${styles.arcFill}`);
+                const scoreEl = card.querySelector<HTMLElement>(`.${styles.score}`);
+                const target = indexes[i].value;
+
+                // Card entrance
                 gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' },
-                    y: 60, opacity: 0, duration: 0.7, delay: i * 0.1, ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none',
+                    },
+                    y: 60, opacity: 0, duration: 0.7, delay: i * 0.12, ease: 'power3.out',
                 });
 
-                // Arc + number animation
+                // Arc + number count-up — fires exactly once on enter
                 ScrollTrigger.create({
                     trigger: card,
                     start: 'top 88%',
+                    once: true,         // ← critical: prevents re-trigger issues
                     onEnter: () => {
                         const obj = { val: 0 };
                         gsap.to(obj, {
                             val: target,
                             duration: 1.8,
                             ease: 'power2.out',
-                            onUpdate: () => {
-                                if (scoreEl) scoreEl.textContent = `${Math.round(obj.val)}`;
-                                if (circle) {
+                            onUpdate() {
+                                const v = Math.round(obj.val);
+                                if (scoreEl) scoreEl.textContent = `${v}`;
+                                if (arc) {
+                                    // Animate from full-hidden to reveal
                                     const offset = CIRCUMFERENCE - (obj.val / 100) * CIRCUMFERENCE;
-                                    circle.style.strokeDashoffset = `${offset}`;
+                                    arc.style.strokeDashoffset = `${offset}`;
+                                }
+                            },
+                            onComplete() {
+                                // Snap to exact final values — no floating point drift
+                                if (scoreEl) scoreEl.textContent = `${target}`;
+                                if (arc) {
+                                    arc.style.strokeDashoffset = `${CIRCUMFERENCE - (target / 100) * CIRCUMFERENCE}`;
                                 }
                             },
                         });
@@ -83,6 +116,7 @@ export default function DhoniIndex() {
                 });
             });
         }, sectionRef);
+
         return () => ctx.revert();
     }, []);
 
@@ -95,7 +129,7 @@ export default function DhoniIndex() {
                 </h2>
                 <p className={styles.sub}>Four dimensions no player has matched — in recorded cricket history.</p>
                 <p className={styles.credibility}>
-                    Derived from match outcomes and documented pressure scenarios — not fan opinion.
+                    Indices derived from international match outcomes, pressure scenarios, and leadership consistency — not fan opinion.
                 </p>
             </div>
 
@@ -104,24 +138,28 @@ export default function DhoniIndex() {
                     <div
                         key={i}
                         className={styles.card}
-                        data-value={idx.value}
+                        ref={(el) => { cardRefs.current[i] = el; }}
                         style={{ '--index-color': idx.color } as React.CSSProperties}
                     >
                         <div className={styles.meterWrap}>
+                            {/*
+                              NOTE: Do NOT set strokeDashoffset as a React prop here.
+                              It is set imperatively in useEffect so GSAP fully owns it.
+                              React setting this prop on re-render would override GSAP's values.
+                            */}
                             <svg viewBox="0 0 120 120" className={styles.svg}>
                                 <circle
                                     className={styles.arcBg}
-                                    cx="60" cy="60" r="54"
+                                    cx="60" cy="60" r={RADIUS}
                                     fill="none" strokeWidth="7"
                                 />
                                 <circle
                                     className={styles.arcFill}
-                                    cx="60" cy="60" r="54"
+                                    cx="60" cy="60" r={RADIUS}
                                     fill="none" strokeWidth="7"
-                                    strokeDasharray={CIRCUMFERENCE}
-                                    strokeDashoffset={CIRCUMFERENCE}
                                     strokeLinecap="round"
                                     transform="rotate(-90 60 60)"
+                                /* strokeDasharray and strokeDashoffset are set via style in useEffect */
                                 />
                             </svg>
                             <div className={styles.meterCenter}>
