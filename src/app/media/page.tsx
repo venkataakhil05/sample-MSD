@@ -15,7 +15,7 @@ const photos = [
     { src: 'https://wallpapercave.com/wp/wp6860276.jpg', title: 'Leading the Charge', tag: 'CAPTAIN', size: 'small' },
     { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4TEk7ffPvYR3EA52HXHasEE8K_0fwmsAFhQ&s', title: 'Lightning Stumping', tag: 'KEEPING', size: 'small' },
     { src: 'https://pbs.twimg.com/media/Fx1pFUNaYAAKpQ2.jpg', title: 'Test Mace', tag: 'TESTS', size: 'small' },
-    { src: 'https://wallpapercave.com/wp/wp1859949.jpg', title: 'CSK Pride', tag: 'IPL', size: 'large' },
+    { src: 'https://cdn.dnaindia.com/sites/default/files/2018/05/28/687009-csk-ipl-dna-hemant-padalkar.jpg?im=FitAndFill=(1200,900)', title: 'CSK Pride', tag: 'IPL', size: 'large' },
 ];
 
 const videos = [
