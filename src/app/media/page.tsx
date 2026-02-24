@@ -10,9 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ═════════════════════════════════════════════════════ DATA */
 const photos = [
-    { src: 'https://wallpapercave.com/wp/wp1859942.jpg', title: 'World Cup 2011', tag: 'ICONIC', size: 'large' },
+    { src: 'https://s3.ap-south-1.amazonaws.com/static.dynamitenews.com/wp-content/uploads/2020/04/02/world-cup-2011-9th-anniversary-of-historic-win-against-sri-lanka/5e8593f743c91.jpeg', title: 'World Cup 2011', tag: 'ICONIC', size: 'large' },
     { src: 'https://wallpapercave.com/wp/wp4074288.jpg', title: 'Calculated Finish', tag: 'BATTING', size: 'small' },
-    { src: 'https://wallpapercave.com/wp/wp4074296.jpg', title: 'Leading the Charge', tag: 'CAPTAIN', size: 'small' },
+    { src: 'https://wallpapercave.com/wp/wp6860276.jpg', title: 'Leading the Charge', tag: 'CAPTAIN', size: 'small' },
     { src: 'https://wallpapercave.com/wp/wp4074303.jpg', title: 'Lightning Stumping', tag: 'KEEPING', size: 'small' },
     { src: 'https://wallpapercave.com/wp/wp4074312.jpg', title: 'Test Mace', tag: 'TESTS', size: 'small' },
     { src: 'https://wallpapercave.com/wp/wp1859949.jpg', title: 'CSK Pride', tag: 'IPL', size: 'large' },

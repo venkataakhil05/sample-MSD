@@ -25,6 +25,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'm.media-amazon.com',
       },
+      {
+        protocol: 'https',
+        hostname: 's3.ap-south-1.amazonaws.com',
+      },
     ],
   },
 };
