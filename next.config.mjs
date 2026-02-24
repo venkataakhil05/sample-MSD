@@ -29,6 +29,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 's3.ap-south-1.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
+      },
     ],
   },
 };
