@@ -174,3 +174,14 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.credibility {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.06em;
+    max-width: 480px;
+    margin: 0.75rem auto 0;
+    text-align: center;
+    font-style: italic;
+}

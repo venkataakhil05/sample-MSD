@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useDocumentary } from '@/contexts/DocumentaryContext';
@@ -29,9 +29,21 @@ export default function DocumentaryMode() {
     const overlayRef = useRef<HTMLDivElement>(null);
     const barsRef = useRef<HTMLDivElement>(null);
     const currentCaptionRef = useRef<string>('');
+    const [showTooltip, setShowTooltip] = useState(false);
 
     const handleToggle = () => {
-        if (!isDocMode) playSound('shutter');
+        if (!isDocMode) {
+            playSound('shutter');
+
+            // Show first-use tooltip only once
+            const hasSeenTooltip = typeof window !== 'undefined' &&
+                localStorage.getItem('docmode-tooltip-seen');
+            if (!hasSeenTooltip) {
+                setShowTooltip(true);
+                localStorage.setItem('docmode-tooltip-seen', '1');
+                setTimeout(() => setShowTooltip(false), 4500);
+            }
+        }
         toggleDocMode();
     };
 
@@ -86,6 +98,17 @@ export default function DocumentaryMode() {
                 <span className={styles.icon}>{isDocMode ? '⏹' : '🎥'}</span>
                 <span className={styles.label}>{isDocMode ? 'EXIT DOC' : 'DOC MODE'}</span>
             </button>
+
+            {/* First-use onboarding tooltip */}
+            {showTooltip && (
+                <div className={styles.onboardTooltip} role="tooltip" aria-live="polite">
+                    <span className={styles.tooltipIcon}>🎬</span>
+                    <p className={styles.tooltipText}>
+                        Documentary Mode slows time and guides the story — like a film.
+                        Scroll at your own pace.
+                    </p>
+                </div>
+            )}
 
             {/* Cinematic bars for theatrical reveal */}
             {isDocMode && (

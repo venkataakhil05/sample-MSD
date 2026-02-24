@@ -87,10 +87,25 @@ const Signature = ({ onComplete }: SignatureProps) => {
                 }
             }
 
-            // 4. SILENCE — 2 full seconds. No sound. No motion. Just Dhoni.
+            // 4. ABSOLUTE SILENCE — 2 full seconds.
+            // Freeze all GSAP animations AND cursor AND audio tails.
             gsap.globalTimeline.pause();
+
+            // Freeze cursor by overriding pointer events
+            const customCursor = document.querySelector('[class*="cursor"]') as HTMLElement | null;
+            if (customCursor) { customCursor.style.pointerEvents = 'none'; customCursor.style.transition = 'none'; }
+
+            // Signal to audio system that silence is enforced
+            document.body.dataset.silence = 'true';
+
             setTimeout(() => {
                 gsap.globalTimeline.resume();
+
+                // Restore cursor
+                if (customCursor) { customCursor.style.pointerEvents = ''; customCursor.style.transition = ''; }
+
+                // Lift silence lock
+                delete document.body.dataset.silence;
 
                 // 5. Quote fades in after silence
                 if (quoteRef.current) {
@@ -104,7 +119,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
 
                 // Shutter sound to exit silence
                 playSound('shutter');
-            }, 2500);
+            }, 2000);
         };
 
         const ctx = gsap.context(() => {

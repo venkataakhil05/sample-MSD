@@ -146,3 +146,63 @@
     align-items: center;
     gap: 1.5rem;
 }
+
+/* First-use tooltip */
+.onboardTooltip {
+    position: fixed;
+    top: 4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5100;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(8, 8, 8, 0.92);
+    border: 1px solid rgba(242, 205, 30, 0.35);
+    border-radius: 0.75rem;
+    padding: 0.9rem 1.4rem;
+    max-width: 340px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(242, 205, 30, 0.08);
+    animation: tooltipIn 0.5s ease forwards, tooltipOut 0.6s ease 3.8s forwards;
+    pointer-events: none;
+}
+
+.tooltipIcon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+}
+
+.tooltipText {
+    font-family: 'Courier New', monospace;
+    font-size: 0.73rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+@keyframes tooltipIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes tooltipOut {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-8px);
+    }
+}

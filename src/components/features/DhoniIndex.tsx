@@ -94,6 +94,9 @@ export default function DhoniIndex() {
                     THE DHONI <span className={styles.gold}>INDEX</span>
                 </h2>
                 <p className={styles.sub}>Four dimensions no player has matched — in recorded cricket history.</p>
+                <p className={styles.credibility}>
+                    Derived from match outcomes and documented pressure scenarios — not fan opinion.
+                </p>
             </div>
 
             <div className={styles.grid}>

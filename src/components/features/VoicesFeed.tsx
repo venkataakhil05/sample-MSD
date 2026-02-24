@@ -9,9 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const voices = [
     { text: '"He never panicked."' },
-    { text: '"You always felt safe with him."' },
     { text: '"The quietest man in the loudest moments."' },
-    { text: '"He read a game like a book no one else could open."' },
     { text: '"He made the impossible feel like a Tuesday afternoon."' },
     { text: '"Calm is not the absence of pressure. He proved that."' },
     { text: '"When he walked in, the match wasn\'t over. It had just begun."' },

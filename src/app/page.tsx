@@ -272,6 +272,8 @@ export default function Home() {
       </main>
 
 
+      {/* ── ACT I: IDENTITY ──────────────────────────────── */}
+
       {/* ── Autograph ────────────────────────────────────── */}
       <section id="section-autograph" className={styles.autographSection}>
         <div className={styles.autographContainer}>
@@ -280,6 +282,8 @@ export default function Home() {
           <p className={styles.quote}>&quot;The process is more important than the result.&quot;</p>
         </div>
       </section>
+
+      {/* ── ACT II: MASTERY ──────────────────────────────── */}
 
       {/* ── Career Stats ─────────────────────────────────── */}
       <div id="section-careers"><CareerStats /></div>
@@ -290,9 +294,6 @@ export default function Home() {
       {/* ── Trophy Room ──────────────────────────────────── */}
       <div id="section-trophies"><TrophyRoom /></div>
 
-      {/* ── Voices About Dhoni ───────────────────────────── */}
-      <div id="section-voices"><VoicesFeed /></div>
-
       {/* ── Dhoni DNA Timeline ───────────────────────────── */}
       <div id="section-dna"><DhoniDNA /></div>
 
@@ -302,6 +303,11 @@ export default function Home() {
       {/* ── Dhoni Index ──────────────────────────────────── */}
       <div id="section-index"><DhoniIndex /></div>
 
+      {/* ── ACT III: LEGACY ──────────────────────────────── */}
+
+      {/* ── Voices About Dhoni ───────────────────────────── */}
+      <div id="section-voices"><VoicesFeed /></div>
+
       {/* ── Decision Room Entrance ── */}
       <section id="section-decision" className={styles.decisionEntrance}>
         <div className={styles.entranceContent}>
@@ -309,10 +315,10 @@ export default function Home() {
           <h2 className={styles.entranceHeading}>DECISION <span className={styles.goldText}>ROOM</span></h2>
           <p className={styles.entranceSub}>
             Step into MS Dhoni&apos;s mind during the most high-stakes moments of his career.
-            Can you match his composure?
+            Can you think like him?
           </p>
           <Link href="/decision-room" className={styles.btnPrimary}>
-            Enter the mind of MS Dhoni
+            Think Like Dhoni
           </Link>
         </div>
       </section>
