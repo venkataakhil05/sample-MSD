@@ -122,6 +122,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
     const playSound = useCallback((type: SoundType) => {
         if (!isAudioEnabled) return;
+        // Absolute silence window: blocked when autograph triggers its 2-second pause
+        if (typeof document !== 'undefined' && document.body.dataset.silence === 'true') return;
         const ac = getAC();
         if (!ac) return;
         switch (type) {
