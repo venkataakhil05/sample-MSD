@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ═════════════════════════════════════════════════════ DATA */
 const photos = [
     { src: 'https://s3.ap-south-1.amazonaws.com/static.dynamitenews.com/wp-content/uploads/2020/04/02/world-cup-2011-9th-anniversary-of-historic-win-against-sri-lanka/5e8593f743c91.jpeg', title: 'World Cup 2011', tag: 'ICONIC', size: 'large' },
-    { src: 'https://wallpapercave.com/wp/wp4074288.jpg', title: 'Calculated Finish', tag: 'BATTING', size: 'small' },
+    { src: 'https://wallpapercave.com/wp/wp5975354.jpg', title: 'Calculated Finish', tag: 'BATTING', size: 'small' },
     { src: 'https://wallpapercave.com/wp/wp6860276.jpg', title: 'Leading the Charge', tag: 'CAPTAIN', size: 'small' },
     { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4TEk7ffPvYR3EA52HXHasEE8K_0fwmsAFhQ&s', title: 'Lightning Stumping', tag: 'KEEPING', size: 'small' },
     { src: 'https://wallpapercave.com/wp/wp4074312.jpg', title: 'Test Mace', tag: 'TESTS', size: 'small' },
