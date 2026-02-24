@@ -318,7 +318,7 @@ export default function Home() {
             Can you think like him?
           </p>
           <Link href="/decision-room" className={styles.btnPrimary}>
-            Think Like Dhoni
+            Think Like Dhoni — Enter the Decision Room
           </Link>
         </div>
       </section>
