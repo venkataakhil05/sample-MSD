@@ -82,7 +82,7 @@ export function useEasterEggs(ghostNumSelector: string) {
                 );
 
                 // 3. Giant centered quote text — unmissable
-                showQuote('"DEFINING A GENERA7ION."', true);
+                showQuote('"DEFINING A GENERA7ION"', true);
             }
         };
         window.addEventListener('keydown', onKeyDown);
@@ -94,7 +94,7 @@ export function useEasterEggs(ghostNumSelector: string) {
         if (heroImg) {
             const onEnter = () => {
                 hoverTimer = setTimeout(() => {
-                    showQuote('"THE PROCESS IS THE ULTIMATE PRIZE."');
+                    showQuote('"THE PROCESS IS THE ULTIMATE PRIZE"');
                 }, 1800);
             };
             const onLeave = () => { if (hoverTimer) clearTimeout(hoverTimer); };

@@ -185,7 +185,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
                     lineHeight: 1.6,
                 }}
             >
-                &quot;The captain who made calm a superpower.&quot;
+                "The process is more important than the result."
             </p>
         </div>
     );

@@ -16,7 +16,7 @@ const CAPTIONS: { selector: string; text: string }[] = [
     { selector: '#section-careers', text: 'The numbers tell one story. The calm tells another.' },
     { selector: '#section-trophies', text: 'Three titles. One man. History.' },
     { selector: '#section-voices', text: 'A generation speaks — in hushed, grateful tones.' },
-    { selector: '#section-dna', text: "He didn't just play. He transformed the game." },
+    { selector: '#section-dna', text: 'He didn\'t just play. He transformed the game' },
     { selector: '#section-index', text: 'No metric captures it fully. But this comes close.' },
     { selector: '#section-legacy', text: 'The number retired. The impact never will.' },
     { selector: '#section-decision', text: 'Enter the classroom of calm: The Decision Room.' },
@@ -44,7 +44,7 @@ export default function DocumentaryMode() {
             if (!seen) {
                 setShowTooltip(true);
                 localStorage.setItem('docmode-tooltip-seen', '1');
-                setTimeout(() => setShowTooltip(false), 5000);
+                setTimeout(() => setShowTooltip(false), 3000);
             }
         }
         toggleDocMode();
