@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/MS-Dhoni-website',
   images: {
     unoptimized: true,
     remotePatterns: [
