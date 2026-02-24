@@ -21,15 +21,15 @@ const batCollection = [
         name: 'Spartan MSD 7',
         year: '2015',
         image1: 'https://m.media-amazon.com/images/I/611PDekWPnL._AC_UF894,1000_QL80_.jpg',
-        image2: '/images/dhoni-wall-2.jpg',
+        image2: '/MS-Dhoni-website/images/dhoni-wall-2.jpg',
         description: 'Limited Edition English Willow'
     },
     {
         id: 3,
         name: 'SS Ton Gladiator',
         year: '2008',
-        image1: '/images/dhoni-wall-2.jpg',
-        image2: '/images/dhoni-new.jpg',
+        image1: '/MS-Dhoni-website/images/dhoni-wall-2.jpg',
+        image2: '/MS-Dhoni-website/images/dhoni-new.jpg',
         description: 'Early Career Power Hitter'
     },
 ];

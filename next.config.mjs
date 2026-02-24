@@ -3,7 +3,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/MS-Dhoni-website' : '',
+  // Always include the repository name as the base path to ensure consistency
+  // between local development and GitHub Pages deployment.
+  basePath: '/MS-Dhoni-website',
   images: {
     unoptimized: true,
     remotePatterns: [
