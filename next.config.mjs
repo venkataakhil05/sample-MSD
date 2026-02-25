@@ -5,7 +5,7 @@ const nextConfig = {
   output: 'export',
   // Always include the repository name as the base path to ensure consistency
   // between local development and GitHub Pages deployment.
-  basePath: isProd ? '/MS-Dhoni-website' : '',
+  basePath: isProd ? '/sample-MSD' : '',
   images: {
     unoptimized: true,
     remotePatterns: [
