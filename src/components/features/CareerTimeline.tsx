@@ -51,10 +51,10 @@ export default function CareerTimeline() {
             gsap.utils.toArray<HTMLElement>(`.${styles.node}`).forEach((node, i) => {
                 gsap.from(node, {
                     scrollTrigger: { trigger: node, start: 'top 85%', toggleActions: 'play none none none' },
-                    y: 40, opacity: 0, scale: 0.85,
-                    duration: 0.6,
-                    delay: i * 0.04,
-                    ease: 'back.out(1.5)',
+                    y: 40, opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.05,
+                    ease: 'expo.out',
                 });
             });
         }, sectionRef);

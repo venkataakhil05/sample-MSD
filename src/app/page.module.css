@@ -259,11 +259,15 @@
 }
 
 .tagline {
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    font-weight: 400;
     color: var(--color-text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.7;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    max-width: 420px;
+    opacity: 0.85;
 }
 
 /* CTA buttons */
@@ -457,20 +461,24 @@
     width: 40px;
     height: 1px;
     background: var(--color-primary);
-    animation: scrollPulse 1.8s ease-in-out infinite;
+    animation: scrollFade 2.4s ease-in-out infinite;
+    transform-origin: left center;
 }
 
-@keyframes scrollPulse {
-
-    0%,
-    100% {
-        width: 40px;
-        opacity: 0.4;
+@keyframes scrollFade {
+    0% {
+        opacity: 0.2;
+        transform: scaleX(0.5);
     }
 
     50% {
-        width: 60px;
-        opacity: 1;
+        opacity: 0.9;
+        transform: scaleX(1);
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: scaleX(0.5);
     }
 }
 
@@ -480,7 +488,8 @@
     letter-spacing: 0.3em;
     color: var(--color-text-muted);
     text-transform: uppercase;
-    opacity: 0.45;
+    opacity: 0.38;
+    animation: scrollFade 2.4s ease-in-out infinite 0.4s;
 }
 
 /* ══════════════════════════════════════════════════ AUTOGRAPH */
@@ -581,4 +590,42 @@
 
 .goldText {
     color: var(--color-primary);
+}
+
+/* ══════════════════════════════════════════════════ CHAPTER MARKS */
+.chapterMark {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 6rem;
+    opacity: 0;
+    /* animated in by GSAP */
+    will-change: opacity;
+}
+
+.chapterMark::before,
+.chapterMark::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-divider);
+}
+
+.chapterLabel {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: 0.5;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .chapterMark {
+        padding: 3rem 1.5rem;
+        gap: 1rem;
+    }
 }

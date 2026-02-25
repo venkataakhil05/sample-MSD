@@ -53,17 +53,47 @@ export default function LegacySection() {
         }, 0);
 
         const ctx = gsap.context(() => {
+            // Section fades in from darkness — timeless, legendary (no Y motion)
+            // blur clears as it appears: like looking at something ancient coming into focus
+            gsap.from(`.${styles.inner}`, {
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+                opacity: 0,
+                filter: 'blur(8px)',
+                duration: 1.8,
+                ease: 'power1.inOut',
+            });
+            // Heading — slightly slower for weight
             gsap.from(`.${styles.heading}`, {
                 scrollTrigger: { trigger: `.${styles.heading}`, start: 'top 85%' },
-                y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
+                opacity: 0, duration: 1.4, ease: 'power1.out',
             });
+            // Tiles: soft fade-in, no Y motion — they're not rising, they're being revealed
             gsap.utils.toArray<HTMLElement>(`.${styles.tile}`).forEach((tile, i) => {
                 gsap.from(tile, {
-                    scrollTrigger: { trigger: tile, start: 'top 88%', toggleActions: 'play none none none' },
-                    y: 50, opacity: 0, duration: 0.75, delay: i * 0.08, ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: tile,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 0,
+                    duration: 1.2,
+                    delay: i * 0.12,
+                    ease: 'power1.inOut',
                 });
             });
+            // Final quote — slowest of all. Maximum weight.
+            gsap.from(`.${styles.finalQuote}`, {
+                scrollTrigger: { trigger: `.${styles.finalQuote}`, start: 'top 88%' },
+                opacity: 0,
+                duration: 2.0,
+                ease: 'power1.inOut',
+            });
         }, sectionRef);
+
         return () => {
             clearTimeout(timer);
             ctx.revert();

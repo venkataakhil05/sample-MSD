@@ -129,10 +129,10 @@ export default function Home() {
     }, 1.8);
 
     /* 6. Tagline, CTA, pills cascade */
-    tl.to(taglineRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.35);
-    tl.to(ctaRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.55);
-    tl.to(pillsRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.7);
-    tl.to(scrollHintRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.9);
+    tl.to(taglineRef.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 2.35);
+    tl.to(ctaRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.65);
+    tl.to(pillsRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 2.82);
+    tl.to(scrollHintRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 3.0);
 
     /* Custom magnetic cursor */
     const moveCursor = (e: MouseEvent) => {
@@ -141,9 +141,10 @@ export default function Home() {
     };
     window.addEventListener('mousemove', moveCursor);
 
-    /* Scroll animations */
+    /* ── Scroll animations ─────────────────────────────────── */
     const ctx = gsap.context(() => {
-      // Hero image parallax on scroll
+
+      // ── Hero image parallax on scroll ──
       gsap.to(imageWrapRef.current, {
         scrollTrigger: {
           trigger: `.${styles.hero}`,
@@ -155,6 +156,17 @@ export default function Home() {
         ease: 'none',
       });
 
+      // ── Chapter marks fade in ──
+      gsap.utils.toArray<HTMLElement>(`.${styles.chapterMark}`).forEach((mark) => {
+        gsap.to(mark, {
+          scrollTrigger: { trigger: mark, start: 'top 85%', toggleActions: 'play none none none' },
+          opacity: 0.7,
+          duration: 1.2,
+          ease: 'power2.out',
+        });
+      });
+
+      // ── Autograph section ──
       gsap.from(`.${styles.autographSection}`, {
         scrollTrigger: { trigger: `.${styles.autographSection}`, start: 'top 80%', scrub: 1 },
         backgroundColor: '#000', duration: 1,
@@ -163,24 +175,24 @@ export default function Home() {
         scrollTrigger: { trigger: `.${styles.autographSection}`, start: 'top bottom', scrub: 2 },
         x: 200, opacity: 0,
       });
-
-      // Autograph section scroll-triggered text entrance
       gsap.from(`.${styles.quote}`, {
         scrollTrigger: { trigger: `.${styles.autographSection}`, start: 'top 70%' },
-        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
+        y: 30, opacity: 0, duration: 1.0, ease: 'power3.out',
       });
 
-      // Decision Room section entrance
+      // ── Decision Room Entrance ── (upward, focused)
       gsap.from(`.${styles.entranceContent}`, {
         scrollTrigger: { trigger: `.${styles.decisionEntrance}`, start: 'top 75%' },
         y: 60, opacity: 0, duration: 1.0, ease: 'expo.out',
       });
 
+      // ── Sound trigger ──
       ScrollTrigger.create({
         trigger: `.${styles.autographSection}`,
         start: 'top 80%',
         onEnter: () => playSound('ambience'),
       });
+
     }, containerRef);
 
     return () => {
@@ -296,6 +308,11 @@ export default function Home() {
 
       {/* ── ACT I: IDENTITY ──────────────────────────────── */}
 
+      {/* Chapter I divider */}
+      <div className={styles.chapterMark}>
+        <span className={styles.chapterLabel}>I — Identity</span>
+      </div>
+
       {/* Autograph */}
       <section id="section-autograph" className={styles.autographSection}>
         <div className={styles.autographContainer}>
@@ -306,6 +323,11 @@ export default function Home() {
       </section>
 
       {/* ── ACT II: MASTERY ──────────────────────────────── */}
+
+      {/* Chapter II divider */}
+      <div className={styles.chapterMark}>
+        <span className={styles.chapterLabel}>II — Mastery</span>
+      </div>
 
       <div id="section-careers"><CareerStats /></div>
       <BatGallery />
@@ -319,6 +341,11 @@ export default function Home() {
       <div id="section-index"><DhoniIndex /></div>
 
       {/* ── ACT III: LEGACY ──────────────────────────────── */}
+
+      {/* Chapter III divider */}
+      <div className={styles.chapterMark}>
+        <span className={styles.chapterLabel}>III — Legacy</span>
+      </div>
 
       <div id="section-voices"><VoicesFeed /></div>
 

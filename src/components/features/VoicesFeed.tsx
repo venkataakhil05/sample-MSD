@@ -26,14 +26,20 @@ export default function VoicesFeed() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Heading: slow, quiet fade — no Y motion (Legacy = timeless, not energetic)
             gsap.from(`.${styles.title}`, {
                 scrollTrigger: { trigger: `.${styles.title}`, start: 'top 85%' },
-                opacity: 0, y: 30, duration: 1, ease: 'power3.out',
+                opacity: 0,
+                duration: 1.4,
+                ease: 'power1.inOut',
             });
 
+            // Voice cards: pure opacity fade, staggered — no bounce, no motion
+            // This section is about collective memory — it should feel like voices
+            // appearing out of silence, not sliding in from anywhere
             gsap.utils.toArray<HTMLElement>(`.${styles.voiceItem}`).forEach((item, i) => {
                 gsap.fromTo(item,
-                    { opacity: 0, y: 40, filter: 'blur(6px)' },
+                    { opacity: 0 },
                     {
                         scrollTrigger: {
                             trigger: item,
@@ -42,11 +48,9 @@ export default function VoicesFeed() {
                             toggleActions: 'play none none reverse',
                         },
                         opacity: 1,
-                        y: 0,
-                        filter: 'blur(0px)',
-                        duration: 1.0,
-                        delay: i * 0.05,
-                        ease: 'power3.out',
+                        duration: 1.3,
+                        delay: i * 0.1,
+                        ease: 'power1.inOut',
                     }
                 );
             });

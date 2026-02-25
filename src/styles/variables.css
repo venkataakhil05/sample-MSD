@@ -42,6 +42,10 @@
   --transition-fast: 0.2s var(--ease-smooth);
   --transition-normal: 0.5s var(--ease-smooth);
   --transition-cinematic: 0.8s var(--ease-cinematic);
+  --transition-legendary: 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Chapter Divider ───────────────────────────── */
+  --color-divider: rgba(245, 197, 24, 0.12);
 
   /* ── Grain & Texture ───────────────────────────── */
   --grain-opacity: 0.035;

@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './TrophyRoom.module.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const trophies = [
     {
@@ -35,7 +38,36 @@ const trophies = [
 ];
 
 export default function TrophyRoom() {
+    const sectionRef = useRef<HTMLElement>(null);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Section heading — calm & centered entry (Peak narrative)
+            gsap.from(`.${styles.heading}`, {
+                scrollTrigger: {
+                    trigger: `.${styles.heading}`,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+                opacity: 0, y: 20, duration: 1.0, ease: 'power2.out',
+            });
+            // Cards enter as one unified, stable block — no bounce, no rush
+            gsap.from(`.${styles.card}`, {
+                scrollTrigger: {
+                    trigger: `.${styles.grid}`,
+                    start: 'top 82%',
+                    toggleActions: 'play none none none',
+                },
+                scale: 0.97,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power2.out',
+                stagger: 0.12,
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
         const card = cardRefs.current[idx];
@@ -43,13 +75,13 @@ export default function TrophyRoom() {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / rect.height) * 18;
-        const rotateY = (x / rect.width) * 18;
+        const rotateX = -(y / rect.height) * 12;
+        const rotateY = (x / rect.width) * 12;
         gsap.to(card, {
             rotateX,
             rotateY,
-            transformPerspective: 800,
-            duration: 0.3,
+            transformPerspective: 1000,
+            duration: 0.4,
             ease: 'power2.out',
         });
     };
@@ -57,11 +89,11 @@ export default function TrophyRoom() {
     const handleMouseLeave = (idx: number) => {
         const card = cardRefs.current[idx];
         if (!card) return;
-        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'elastic.out(1,0.5)' });
+        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.8, ease: 'power3.out' });
     };
 
     return (
-        <section className={styles.section}>
+        <section className={styles.section} ref={sectionRef}>
             <div className={styles.headerRow}>
                 <span className={styles.eyebrow}>ICC TITLES</span>
                 <h2 className={styles.heading}>

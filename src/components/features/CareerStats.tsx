@@ -1,15 +1,46 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './CareerStats.module.css';
 import { careerStats } from '@/data/stats';
+import PrimarySourceBadge from '../ui/PrimarySourceBadge';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Format = 'test' | 'odi' | 't20i' | 'ipl';
 
-import PrimarySourceBadge from '../ui/PrimarySourceBadge';
-
 const CareerStats = () => {
     const [activeTab, setActiveTab] = useState<Format>('odi');
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Heading: upward entrance — "Rise" narrative energy
+            gsap.from(`.${styles.heading}`, {
+                scrollTrigger: {
+                    trigger: `.${styles.heading}`,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none',
+                },
+                y: 40, opacity: 0, duration: 0.9, ease: 'expo.out',
+            });
+            // Stat cards stagger upward — confident, progressive reveal
+            gsap.from(`.${styles.statCard}`, {
+                scrollTrigger: {
+                    trigger: `.${styles.statsGrid}`,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+                y: 30, opacity: 0,
+                duration: 0.7,
+                ease: 'expo.out',
+                stagger: 0.07,
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
 
     const tabs: { id: Format; label: string }[] = [
         { id: 'test', label: 'TEST' },
@@ -21,7 +52,7 @@ const CareerStats = () => {
     const data = careerStats.formats[activeTab];
 
     return (
-        <section className={styles.statsSection}>
+        <section className={styles.statsSection} ref={sectionRef}>
             <div className={styles.headerRow}>
                 <h2 className={styles.heading}>CAREER <span className={styles.goldText}>STATS</span></h2>
                 <PrimarySourceBadge />
