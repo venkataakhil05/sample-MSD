@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useAudio } from '@/contexts/SoundContext';
 
@@ -65,7 +65,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
             position:absolute;
             width:${size}px;height:${size}px;
             border-radius:50%;
-            background:radial-gradient(circle, #FFD700, #e8a000);
+            background:radial-gradient(circle, #f5c518, #e8a000);
             left:${cx}px;top:${cy}px;
             pointer-events:none;z-index:9999;
             transform:translate(-50%,-50%);
@@ -159,12 +159,12 @@ const Signature = ({ onComplete }: SignatureProps) => {
                 viewBox="0 0 600 300"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                style={{ maxWidth: '100%', height: 'auto', filter: 'drop-shadow(0 0 5px #F2CD1E)' }}
+                style={{ maxWidth: '100%', height: 'auto', filter: 'drop-shadow(0 0 5px var(--color-primary))' }}
             >
                 <path
                     ref={pathRef}
                     d="M150 200 C150 150, 180 100, 200 80 C210 70, 230 50, 240 80 C250 110, 220 180, 200 220 C180 260, 140 280, 140 240 C140 200, 200 120, 250 100 C300 80, 350 150, 320 200 C300 230, 250 250, 280 200 C310 150, 400 50, 450 50 C480 50, 420 250, 400 280 C390 295, 380 250, 420 200 C450 160, 500 100, 550 50 L300 280"
-                    stroke="#F2CD1E"
+                    stroke="var(--color-primary)"
                     strokeWidth="6"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -177,7 +177,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
                     fontStyle: 'italic',
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(0.9rem, 2vw, 1.15rem)',
-                    color: 'rgba(255,215,0,0.7)',
+                    color: 'rgba(245, 197, 24, 0.7)',
                     letterSpacing: '0.06em',
                     marginTop: '1.2rem',
                     maxWidth: '480px',
@@ -185,7 +185,7 @@ const Signature = ({ onComplete }: SignatureProps) => {
                     lineHeight: 1.6,
                 }}
             >
-                "The process is more important than the result."
+                &quot;The process is more important than the result.&quot;
             </p>
         </div>
     );

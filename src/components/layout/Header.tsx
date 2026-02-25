@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -19,10 +19,10 @@ const navLinks = [
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const { isAudioEnabled, toggleAudio } = useAudio();
 
-    // Entrance animation for orbital nav dots
     useEffect(() => {
         gsap.from(`.${styles.orbitalItem}`, {
             x: 60,
@@ -38,12 +38,17 @@ const Header = () => {
             duration: 0.7,
             ease: 'power3.out',
         });
+
+        // Scroll-shrink: toggle .scrolled state on 60px threshold
+        const handleScroll = () => setScrolled(window.scrollY > 60);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <>
             {/* Top Bar — Logo + Audio Toggle + Menu */}
-            <header className={styles.topBar}>
+            <header className={`${styles.topBar} ${scrolled ? styles.scrolled : ''}`}>
                 <div className={styles.logo}>
                     <Link href="/">MSD<span className={styles.seven}>7</span></Link>
                 </div>

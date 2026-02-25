@@ -5,7 +5,7 @@ const nextConfig = {
   output: 'export',
   // Always include the repository name as the base path to ensure consistency
   // between local development and GitHub Pages deployment.
-  basePath: '/MS-Dhoni-website',
+  basePath: isProd ? '/MS-Dhoni-website' : '',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -42,6 +42,22 @@ const nextConfig = {
         hostname: 'cdn.dnaindia.com',
       },
     ],
+  },
+  experimental: {
+    turbopack: {
+      resolveAlias: {
+        gsap: 'gsap/dist/gsap',
+      },
+    },
+  },
+  webpack: (config) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        gsap: 'gsap/dist/gsap',
+      };
+    }
+    return config;
   },
 };
 

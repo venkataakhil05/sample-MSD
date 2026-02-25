@@ -9,9 +9,21 @@
     align-items: center;
     padding: 1.6rem 3rem;
     z-index: 1000;
-    /* subtle glass */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
     backdrop-filter: blur(2px);
+    transition: padding 0.4s var(--ease-cinematic),
+        backdrop-filter 0.4s var(--ease-cinematic),
+        background 0.4s var(--ease-cinematic),
+        border-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+}
+
+/* Scrolled state — shrinks, blurs, gold border */
+.scrolled {
+    padding: 1rem 3rem;
+    background: rgba(6, 6, 6, 0.90);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom-color: rgba(245, 197, 24, 0.12);
 }
 
 /* ─── Logo ───────────────────────────────────────────────── */
@@ -65,12 +77,17 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: color 0.2s;
+}
+
+.menuToggle:hover {
+    color: var(--color-primary);
 }
 
 .audioToggle {
     font-size: 1.2rem;
     background: transparent;
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(245, 197, 24, 0.2);
     border-radius: 50%;
     width: 2.2rem;
     height: 2.2rem;
@@ -78,15 +95,15 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     line-height: 1;
 }
 
 .audioToggle:hover {
     border-color: var(--color-primary);
     transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(245, 197, 24, 0.25);
 }
-
 
 /* ─── Orbital Vertical Nav ───────────────────────────────── */
 .orbitalNav {
@@ -112,7 +129,7 @@
     top: 14px;
     bottom: 14px;
     width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(255, 209, 0, 0.35), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(245, 197, 24, 0.35), transparent);
     pointer-events: none;
 }
 
@@ -173,7 +190,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255, 209, 0, 0.4);
+    border: 1.5px solid rgba(245, 197, 24, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,7 +210,7 @@
 .orbitalLink:hover .navDot,
 .orbitalActive .navDot {
     border-color: var(--color-primary);
-    box-shadow: 0 0 12px var(--color-primary), 0 0 30px rgba(255, 209, 0, 0.3);
+    box-shadow: 0 0 12px var(--color-primary), 0 0 30px rgba(245, 197, 24, 0.3);
 }
 
 .orbitalLink:hover .dotInner,
@@ -232,6 +249,11 @@
     border: none;
     cursor: pointer;
     z-index: 10;
+    transition: color 0.2s;
+}
+
+.mobileClose:hover {
+    color: var(--color-primary);
 }
 
 .mobileNav ul {
@@ -283,6 +305,10 @@
 @media (max-width: 768px) {
     .topBar {
         padding: 1.2rem 1.5rem;
+    }
+
+    .scrolled {
+        padding: 0.8rem 1.5rem;
     }
 
     .orbitalNav {

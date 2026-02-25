@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './VoicesFeed.module.css';
 
@@ -13,6 +13,12 @@ const voices = [
     { text: '"He made the impossible feel like a Tuesday afternoon."' },
     { text: '"Calm is not the absence of pressure. He proved that."' },
     { text: '"When he walked in, the match wasn\'t over. It had just begun."' },
+];
+
+// Quotes shown in the marquee strip (duplicated for seamless loop)
+const marqueeItems = [
+    'Captain Cool', '3 ICC Titles', '5× IPL Champion', '195 Stumpings',
+    '10,773 ODI Runs', 'The Finisher', 'No Panic', 'Ranchi to the World',
 ];
 
 export default function VoicesFeed() {
@@ -48,10 +54,23 @@ export default function VoicesFeed() {
         return () => ctx.revert();
     }, []);
 
+    // Duplicate for seamless marquee
+    const doubledMarquee = [...marqueeItems, ...marqueeItems];
+
     return (
         <section className={styles.section} ref={sectionRef}>
-            {/* Grain texture overlay */}
             <div className={styles.grain} aria-hidden="true" />
+
+            {/* Auto-scrolling marquee strip */}
+            <div className={styles.marquee} aria-hidden="true">
+                <div className={styles.marqueeTrack}>
+                    {doubledMarquee.map((item, i) => (
+                        <span key={i} className={styles.marqueeItem}>
+                            {item}<span>✦</span>
+                        </span>
+                    ))}
+                </div>
+            </div>
 
             <div className={styles.inner}>
                 <span className={styles.eyebrow}>COLLECTIVE MEMORY</span>

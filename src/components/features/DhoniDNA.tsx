@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './DhoniDNA.module.css';
 
@@ -21,7 +21,7 @@ const eras = [
         tag: 'Calm Under Chaos',
         habit: 'Process over outcome',
         quote: '"The best captains don\'t panic. They think while others react."',
-        color: '#FFD700',
+        color: '#f5c518',
         desc: 'Three ICC trophies in five years. The birth of Captain Cool — leading India through the most intense matches with silence as his superpower.',
     },
     {

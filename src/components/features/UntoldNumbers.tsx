@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './UntoldNumbers.module.css';
 import PrimarySourceBadge from '../ui/PrimarySourceBadge';
@@ -28,7 +28,7 @@ export default function UntoldNumbers() {
                 const valueEl = card.querySelector(`.${styles.value}`) as HTMLElement;
                 if (!valueEl) return;
                 const targetStr = valueEl.dataset.target || '0';
-                const target = parseFloat(targetStr);
+                const target = parseFloat(targetStr) || 0;
                 const isDecimal = targetStr.includes('.');
                 const obj = { val: 0 };
 

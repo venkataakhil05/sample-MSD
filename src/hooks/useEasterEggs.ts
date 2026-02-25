@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { useAudio } from '@/contexts/SoundContext';
 
 export function useEasterEggs(ghostNumSelector: string) {
@@ -14,9 +14,9 @@ export function useEasterEggs(ghostNumSelector: string) {
             position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
             z-index:99999;pointer-events:none;text-align:center;
             font-family:'Oswald',sans-serif;font-size:clamp(1.4rem,4vw,2.5rem);
-            color:${isGolden ? '#FFD700' : '#ffffff'};
+            color:${isGolden ? '#f5c518' : '#ffffff'};
             letter-spacing:0.15em;text-transform:uppercase;
-            text-shadow:0 0 50px ${isGolden ? 'rgba(255,215,0,0.8)' : 'rgba(255,255,255,0.4)'};
+            text-shadow:0 0 50px ${isGolden ? 'rgba(245, 197, 24, 0.8)' : 'rgba(255,255,255,0.4)'};
             padding:2.5rem;max-width:800px;opacity:0;
         `;
         el.textContent = text;
@@ -51,8 +51,8 @@ export function useEasterEggs(ghostNumSelector: string) {
                 flash.style.cssText = `
                     position:fixed;inset:0;pointer-events:none;z-index:99999;
                     background:radial-gradient(ellipse at center,
-                        rgba(255,215,0,0.55) 0%,
-                        rgba(255,180,0,0.30) 40%,
+                        rgba(245, 197, 24, 0.55) 0%,
+                        rgba(245, 180, 0, 0.30) 40%,
                         transparent 75%);
                 `;
                 document.body.appendChild(flash);
@@ -71,9 +71,9 @@ export function useEasterEggs(ghostNumSelector: string) {
 
                 // 2. Gold border glow on entire viewport
                 gsap.fromTo(document.documentElement,
-                    { outline: '0px solid #FFD700' },
+                    { outline: '0px solid #f5c518' },
                     {
-                        outline: '8px solid #FFD700',
+                        outline: '8px solid #f5c518',
                         duration: 0.3, yoyo: true, repeat: 3, ease: 'power2.inOut',
                         onComplete: () => {
                             (document.documentElement as HTMLElement).style.outline = '';

@@ -36,10 +36,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
-    font-size: clamp(6rem, 20vw, 16rem);
-    font-weight: 900;
+    font-size: clamp(6.5rem, 22vw, 18rem);
+    font-weight: 400;
     color: var(--color-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1;
     /* Scoreboard glow */
     text-shadow: 0 0 60px rgba(255, 209, 0, 0.5), 0 0 120px rgba(255, 209, 0, 0.2);
@@ -72,11 +72,11 @@
 .titleWord {
     display: block;
     font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    font-weight: 400;
     color: var(--color-primary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: -0.01em;
     will-change: transform;
 }
 
@@ -151,9 +151,10 @@
 
 .year {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400;
     color: var(--color-primary);
-    opacity: 0.25;
+    opacity: 0.35;
     flex-shrink: 0;
     width: 140px;
     will-change: transform, opacity;

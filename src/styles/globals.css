@@ -1,11 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@200..700&display=swap');
 @import './variables.css';
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
+/* globals.css - Base Resets & Global Utility */
 
 html,
 body {
@@ -14,8 +9,17 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text-main);
     font-family: var(--font-main);
+}
+
+body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 a {
@@ -23,23 +27,9 @@ a {
     text-decoration: none;
 }
 
-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-img,
-video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -47,8 +37,9 @@ video {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-text-muted);
-    border-radius: 4px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-bg);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

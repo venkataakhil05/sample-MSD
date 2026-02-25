@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useDocumentary } from '@/contexts/DocumentaryContext';
 import { useAudio } from '@/contexts/SoundContext';
@@ -104,7 +104,7 @@ export default function DocumentaryMode() {
         };
         window.addEventListener('wheel', onWheel, { passive: true });
         return () => window.removeEventListener('wheel', onWheel);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
     }, [isDocMode]);
 
     // ── Main Documentary Mode effect ─────────────────────────────
@@ -138,7 +138,7 @@ export default function DocumentaryMode() {
                 currentCaptionRef.current = '';
             };
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
     }, [isDocMode]);
 
     return (

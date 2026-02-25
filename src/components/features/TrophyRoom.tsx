@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import styles from './TrophyRoom.module.css';
 
 const trophies = [
@@ -12,7 +12,7 @@ const trophies = [
         location: 'Johannesburg, South Africa',
         note: 'India\'s first T20 World Cup. The iconic Joginder over. A nation\'s new obsession was born.',
         icon: '🏆',
-        color: '#FFD700',
+        color: '#f5c518',
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const trophies = [
         location: 'Wankhede Stadium, Mumbai',
         note: 'That six. That moment. 28 years of wait dissolved in one helicopter swing.',
         icon: '🌍',
-        color: '#c0922a',
+        color: '#f5c518',
     },
     {
         id: 3,

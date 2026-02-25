@@ -6,40 +6,45 @@ import styles from './Footer.module.css';
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <div className={styles.content}>
-                <div className={styles.logoSection}>
-                    <h2>MS Dhoni</h2>
-                    <p>Captain Cool. Legend. Leader.</p>
+            <div className={styles.inner}>
+
+                {/* Brand */}
+                <div className={styles.brand}>
+                    <div className={styles.logo}>MSD<span>7</span></div>
+                    <p className={styles.tagline}>
+                        Captain Cool. Legend. Leader. The architect of calm in chaos.
+                    </p>
                 </div>
 
-                <div className={styles.linksSection}>
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><Link href="/about">About</Link></li>
-                        <li><Link href="/career">Career Stats</Link></li>
-                        <li><Link href="/media">Media</Link></li>
-                        <li><Link href="/decision-room">Decision Room</Link></li>
-                        <li><Link href="/contact">Contact</Link></li>
-                    </ul>
+                {/* Quick Links */}
+                <div className={styles.links}>
+                    <p className={styles.colTitle}>Explore</p>
+                    <Link href="/about">About</Link>
+                    <Link href="/career">Career Stats</Link>
+                    <Link href="/media">Media</Link>
+                    <Link href="/decision-room">Decision Room</Link>
+                    <Link href="/contact">Contact</Link>
                 </div>
 
-                <div className={styles.socialSection}>
-                    <h3>Follow MSD</h3>
+                {/* Social */}
+                <div className={styles.social}>
+                    <p className={styles.colTitle}>Follow MSD</p>
                     <div className={styles.socialIcons}>
-                        <a href="https://twitter.com/msdhoni" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></a>
-                        <a href="https://www.instagram.com/mahi7781" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
-                        <a href="https://www.facebook.com/MSDhoni" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><FaYoutube /></a>
+                        <a href="https://twitter.com/msdhoni" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className={styles.socialLink}><FaTwitter /></a>
+                        <a href="https://www.instagram.com/mahi7781" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.socialLink}><FaInstagram /></a>
+                        <a href="https://www.facebook.com/MSDhoni" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={styles.socialLink}><FaFacebookF /></a>
+                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.socialLink}><FaYoutube /></a>
                     </div>
+                    <p style={{ fontSize: '0.71rem', color: 'rgba(255,255,255,0.2)', lineHeight: '1.5', marginTop: '0.5rem' }}>
+                        📚 Data from ICC archives,<br />match records & historical footage.
+                    </p>
                 </div>
             </div>
 
-            <div className={styles.bottomBar}>
-                <p>&copy; {new Date().getFullYear()} MS Dhoni. All Rights Reserved.</p>
-                <p className={styles.sourceBadge}>
-                    📚 Data curated from match records, ICC archives &amp; historical footage.
-                </p>
-                <p>Designed &amp; Developed with Passion.</p>
+            {/* Bottom bar */}
+            <div className={styles.bottom}>
+                <p className={styles.copy}>© {new Date().getFullYear()} MS Dhoni Fan Portfolio. All Rights Reserved.</p>
+                <p className={styles.madeWith}>Made with <span className={styles.heartGold}>♥</span> &amp; GSAP</p>
             </div>
         </footer>
     );

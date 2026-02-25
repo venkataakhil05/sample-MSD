@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './DhoniIndex.module.css';
 
@@ -10,24 +10,24 @@ gsap.registerPlugin(ScrollTrigger);
 const indexes = [
     {
         label: 'Calmness Index',
-        value: 97,
-        caption: 'Zero panic in 50+ high-pressure international chases.',
-        icon: '🧘',
-        color: '#f2cd1e',
+        value: 98,
+        caption: 'Consistently maintaining sub-70 BPM in high-pressure chases.',
+        icon: '🧘‍♂️',
+        color: '#f5c518',
     },
     {
         label: 'Chase Mastery',
         value: 94,
         caption: 'Highest ODI chasing win % in recorded cricket history.',
         icon: '🎯',
-        color: '#e8a000',
+        color: '#f5c518',
     },
     {
         label: 'Captaincy Stability',
         value: 96,
         caption: 'Longest unbeaten Test captaincy run — calm under siege.',
         icon: '🛡️',
-        color: '#f2cd1e',
+        color: '#f5c518',
     },
     {
         label: 'WK-Captain Rarity',
@@ -68,11 +68,13 @@ export default function DhoniIndex() {
             });
 
             cardRefs.current.forEach((card, i) => {
-                if (!card) return;
+                const idxData = indexes[i];
+                if (!card || !idxData) return;
 
                 const arc = card.querySelector<SVGCircleElement>(`.${styles.arcFill}`);
                 const scoreEl = card.querySelector<HTMLElement>(`.${styles.score}`);
-                const target = indexes[i].value;
+                const target = idxData.value;
+                const isDecimal = target.toString().includes('.');
 
                 // Card entrance
                 gsap.from(card, {

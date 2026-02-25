@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import styles from './page.module.css';
 import { scenarios } from '@/data/scenarios';
 
@@ -13,7 +13,7 @@ export default function DecisionRoom() {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [score, setScore] = useState(0);
 
-    const scenario = scenarios[currentIdx];
+    const scenario = scenarios[currentIdx] || scenarios[0]; // Defensive default
     const total = scenarios.length;
 
     const startGame = () => setPhase('question');

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import styles from './page.module.css';
 
 export default function Contact() {

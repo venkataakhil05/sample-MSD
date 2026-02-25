@@ -1,42 +1,73 @@
 :root {
-  /* Colors */
+  /* ── Core Palette ──────────────────────────────── */
   --color-bg: #0a0a0a;
   --color-surface: #121212;
-  --color-primary: #FFD700;
-  /* Gold */
+  --color-primary: #f5c518;
+  /* Dhoni Yellow */
   --color-secondary: #003366;
   /* Deep Blue */
   --color-text-main: #ffffff;
   --color-text-muted: #a0a0a0;
   --color-accent: #e50914;
-  /* Red accent if needed */
+  /* Red */
 
-  /* Typography */
-  --font-main: 'Inter', sans-serif;
-  --font-display: 'Oswald', sans-serif;
+  /* ── Cinematic Additions ───────────────────────── */
+  --color-gold-dim: rgba(245, 197, 24, 0.15);
+  --color-gold-glow: rgba(245, 197, 24, 0.35);
+  --color-surface-glass: rgba(255, 255, 255, 0.03);
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
 
-  /* Spacing */
+  /* ── Typography ────────────────────────────────── */
+  --font-main: var(--font-inter), 'Inter', sans-serif;
+  --font-display: var(--font-gloock), serif;
+
+  /* ── Spacing (8px system) ──────────────────────── */
   --spacing-xs: 0.5rem;
+  /* 8px */
   --spacing-sm: 1rem;
+  /* 16px */
   --spacing-md: 2rem;
+  /* 32px */
   --spacing-lg: 4rem;
+  /* 64px */
   --spacing-xl: 8rem;
+  /* 128px */
 
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.5s ease;
+  /* ── Cinematic Easing ──────────────────────────── */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ── Transitions ───────────────────────────────── */
+  --transition-fast: 0.2s var(--ease-smooth);
+  --transition-normal: 0.5s var(--ease-smooth);
+  --transition-cinematic: 0.8s var(--ease-cinematic);
+
+  /* ── Grain & Texture ───────────────────────────── */
+  --grain-opacity: 0.035;
+  --spotlight-opacity: 0.12;
+
+  /* ── Shadows ───────────────────────────────────── */
+  --shadow-gold: 0 0 20px rgba(245, 197, 24, 0.25), 0 0 60px rgba(245, 197, 24, 0.08);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 40px rgba(245, 197, 24, 0.1);
+
+  /* ── Border Radius ─────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
 }
 
-/* ── Captain Mode (default: electric stadium atmosphere) ── */
+/* ── Captain Mode (default) ──────────────────────── */
 [data-persona='captain'] {
   --color-bg: #080808;
   --color-surface: #111111;
-  --color-primary: #FFD700;
+  --color-primary: #f5c518;
   --color-text-main: #ffffff;
   --color-text-muted: #a0a0a0;
 }
 
-/* ── Calm Mode (matte, muted, meditative) ── */
+/* ── Calm Mode ───────────────────────────────────── */
 [data-persona='calm'] {
   --color-bg: #111114;
   --color-surface: #1a1a1f;
