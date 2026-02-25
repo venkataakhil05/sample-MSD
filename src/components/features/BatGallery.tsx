@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './BatGallery.module.css';
 import Image from 'next/image';
 import { useAudio } from '@/contexts/SoundContext';
+import { getAssetPath } from '@/utils/paths';
 
 // Placeholder data for Bat collection
 // In a real app, these would be imported assets or CMS data
@@ -53,7 +54,7 @@ const BatGallery = () => {
                             {/* Image 1: Default View */}
                             <div className={styles.imageWrapper} data-view="front">
                                 <Image
-                                    src={bat.image1}
+                                    src={getAssetPath(bat.image1)}
                                     alt={`${bat.name} Front`}
                                     fill
                                     className={styles.batImage}
@@ -64,7 +65,7 @@ const BatGallery = () => {
                             {/* Image 2: Hover View (Reveals with crossfade) */}
                             <div className={styles.imageWrapper} data-view="side">
                                 <Image
-                                    src={bat.image2}
+                                    src={getAssetPath(bat.image2)}
                                     alt={`${bat.name} Side`}
                                     fill
                                     className={styles.batImage}

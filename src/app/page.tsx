@@ -19,6 +19,7 @@ import CareerTimeline from '../components/features/CareerTimeline';
 import MagneticButton from '../components/ui/MagneticButton';
 import { useEasterEggs } from '@/hooks/useEasterEggs';
 import { useAudio } from '@/contexts/SoundContext';
+import { getAssetPath } from '@/utils/paths';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -269,7 +270,7 @@ export default function Home() {
         {/* Right — hero image with parallax */}
         <div className={styles.heroImg} ref={imageWrapRef} data-easter="hero-img">
           <Image
-            src="/images/dhoni-hero.jpg"
+            src={getAssetPath('/images/dhoni-hero.jpg')}
             alt="MS Dhoni"
             fill
             priority
